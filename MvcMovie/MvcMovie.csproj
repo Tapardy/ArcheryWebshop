@@ -4,9 +4,12 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>b57ad032-2a18-4724-b7c0-85fe635013df</UserSecretsId>
+        <RootNamespace>MvcArcheryWebshop</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.15" />
       <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
       <PackageReference Include="Microsoft.CodeAnalysis.Razor" Version="6.0.15" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
