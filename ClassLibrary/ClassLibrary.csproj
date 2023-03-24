@@ -12,8 +12,4 @@
       <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\MvcMovie\MvcMovie.csproj" />
-    </ItemGroup>
-
 </Project>

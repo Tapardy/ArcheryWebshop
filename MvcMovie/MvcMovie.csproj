@@ -36,4 +36,8 @@
       <UpToDateCheckInput Remove="Pages\HelloWorld\Index.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj" />
+    </ItemGroup>
+
 </Project>
