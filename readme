@@ -1,6 +1,11 @@
-28-03-2023
+Sprint 2
 Code voortgang:
 De code heeft een aantal pagina's, deze pagina's zijn grotendeels nog templates. 
 Verder heb ik ook een database toegevoegd, maar deze is nog niet gebruikt. 
 Momenteel zit ik vast op een clickable image te maken die je redirect naar een pagina. 
 Dit is niet moeilijk als het naar een specifieke pagina gaat, maar om veel pagina's te voorkomen, heb ik geprobeerd om een universele product pagina te maken
+Mijn doel in sprint 3 is om de database integratie te maken, de login is er momenteel al, maar nog geen waardes uit de database. Ook wil ik de universele product pagina laten werken.
+
+Documentatie:
+Mijn documentatie is nog niet ver, als tip had ik gekregen om wat te gaan coderen om niet alleen maar te documenteren.
+In de komende weken wil ik graag een ERD, goede UML en Use Cases maken.
