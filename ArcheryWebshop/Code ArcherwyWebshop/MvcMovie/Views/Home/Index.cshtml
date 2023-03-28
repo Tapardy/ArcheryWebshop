@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Archery shop";
+}
+<main>
+    <h2>Welcome to the webshop!</h2>
+    <p>Here you can find a wide variety of products to choose from</p>
+
+    <h3>Featured Products</h3>
+
+    <ul>
+        <li>
+            <h4>Traditional Bow</h4>
+            <a href="@Url.Action("Index", "Product", new { id = 1 })">
+                <img src="images/TradBowImage.jpeg" alt="Product 1"
+                     height="300"
+                     width="400">
+            </a>
+            <p>Price: $400.00</p>
+            <button>Add to Cart</button>
+        </li>
+
+
+        <li>
+            <h4>Traditional Quiver</h4>
+            <img src="images/TradQuiverImage.webp" alt="Product 2"
+                 height="300"
+                 width="400">
+            <p>Price: $30.00</p>
+            <button>Add to Cart</button>
+        </li>
+
+        <li>
+            <h4>Traditional Arrows x3</h4>
+            <img src="images/TradArrowImage.png" alt="Product 3"
+                 height="300"
+                 width="400">
+            <p>Price: $15.00</p>
+            <button>Add to Cart</button>
+        </li>
+    </ul>
+</main>
