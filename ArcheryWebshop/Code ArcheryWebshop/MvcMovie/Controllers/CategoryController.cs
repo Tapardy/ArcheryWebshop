@@ -1,43 +1,25 @@
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Text.Json;
+using MvcArcheryWebshop.Models;
+using WebshopClassLibrary;
 
 namespace MvcArcheryWebshop.Controllers
 {
-    public class Secrets
-    {
-        public string ConnectionString { get; set; }
-    }
     public class CategoryController : Controller
     {
         private string connectionString;
+        private List<string> bowType = new List<string>();
+        Database database = new Database();
+
         // GET: Category
+
         public ActionResult Index()
         {
-            string secretsPath = "/Users/yorischarnigg/.microsoft/usersecrets/b57ad032-2a18-4724-b7c0-85fe635013df/secrets.json";
-            string secretsJson = System.IO.File.ReadAllText(secretsPath);
-            Secrets secrets = JsonSerializer.Deserialize<Secrets>(secretsJson);
-            connectionString = secrets.ConnectionString;
-            //data from db
-            //ideally different applications
-            //bv list maken en dan deze list returnen
-            //code in class in library
-            // Create a new database connection:
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
-            
-            cnn.Open();
-            
-            // SqlCommand command = new SqlCommand(
-            //     "SELECT * FROM Category;");
-            // SqlDataReader reader = command.ExecuteReader();
-            // while (reader.Read())
-            // {
-            //     
-            // }
-            cnn.Close();
-            //catch exeption ex
-            return View();
+            database.DataValues(bowType);
+            // //catch exeption ex
+            return View(bowType);
         }
 
         // GET: Category/Details/5
