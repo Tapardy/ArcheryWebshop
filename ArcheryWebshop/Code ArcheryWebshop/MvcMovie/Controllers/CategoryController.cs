@@ -1,15 +1,10 @@
-using System.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using System.Text.Json;
-using MvcArcheryWebshop.Models;
-using WebshopClassLibrary;
+using DataLayer;
 
 namespace MvcArcheryWebshop.Controllers
 {
     public class CategoryController : Controller
     {
-        private string connectionString;
         private List<string> bowType = new List<string>();
         Database database = new Database();
 

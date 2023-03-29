@@ -38,6 +38,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj" />
+      <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
     </ItemGroup>
 
 </Project>
