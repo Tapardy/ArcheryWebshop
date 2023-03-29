@@ -1,27 +1,15 @@
-// IProductRepository.cs
 using System.Collections.Generic;
 using WebshopClassLibrary;
 
 public class IProductRepository
 {
-    IEnumerable<Product> GetAllProducts()
-    {
-        List<Product> products = new List<Product>()
-        {
-            new Product { Id = 1, Name = "Traditional Bow", Price = 400.00M, ImageUrl = "MvcMovie/wwwroot/images/TradBowImage.jpeg" },
-            new Product { Id = 2, Name = "Compound Bow", Price = 600.00M, ImageUrl = "images/CompBowImage.jpeg" },
-            new Product { Id = 3, Name = "Crossbow", Price = 800.00M, ImageUrl = "images/XBowImage.jpeg" }
-        };
-        return products;
-    }
-
     public Product GetProductById(int productId)
     {
         List<Product> products = new List<Product>()
         {
-            new Product { Id = 1, Name = "Traditional Bow", Price = 400.00M, ImageUrl = "images/TradBowImage.jpeg" },
-            new Product { Id = 2, Name = "Compound Bow", Price = 600.00M, ImageUrl = "images/CompBowImage.jpeg" },
-            new Product { Id = 3, Name = "Crossbow", Price = 800.00M, ImageUrl = "images/XBowImage.jpeg" }
+            new Product { Id = 1, Name = "Traditional Bow", Price = 400.00M, ImageUrl = "/images/TradBowImage.jpeg"  },
+            new Product { Id = 2, Name = "Traditional Quiver", Price = 30.00M, ImageUrl = "/images/TradQuiverImage.webp" },
+            new Product { Id = 3, Name = "Traditional Arrows x3", Price = 15.00M, ImageUrl = "/images/TradArrowImage.png" }
         };
         return products.FirstOrDefault(p => p.Id == productId);
     }

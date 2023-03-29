@@ -1,6 +1,10 @@
+using MvcArcheryWebshop;
+using MvcArcheryWebshop.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IProductRepository>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation(); //addrazorruntime makes it so edits are possible by saving the file while program is running
 var app = builder.Build();
 // Configure the HTTP request pipeline.

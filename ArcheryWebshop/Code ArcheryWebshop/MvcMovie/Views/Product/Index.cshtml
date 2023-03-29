@@ -4,7 +4,7 @@
 
 <h1>@Model.Name</h1>
 
-<img src="@Model.ImageUrl" alt="@Model.Name" />
+<img src="@Model.ImageUrl" alt="@Model.Name" width="300" height="250"/>
 
 <p>@Model.Description</p>
 
@@ -13,4 +13,4 @@
 <form method="post" action="/cart/add">
     <input type="hidden" name="productId" value="@Model.Id" />
     <button type="submit">Add to cart</button>
-</form>~/~/
+</form>
