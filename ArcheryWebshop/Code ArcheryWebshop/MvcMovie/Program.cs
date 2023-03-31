@@ -1,4 +1,3 @@
-using MvcArcheryWebshop;
 using MvcArcheryWebshop.Models;
 
 var builder = WebApplication.CreateBuilder(args);

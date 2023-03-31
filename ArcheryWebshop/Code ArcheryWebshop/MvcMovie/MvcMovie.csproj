@@ -38,7 +38,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj" />
-      <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Cart\Index.cshtml" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using WebshopClassLibrary;
+
+namespace MvcArcheryWebshop.Models;
 
 public class IProductRepository
 {

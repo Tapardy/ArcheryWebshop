@@ -1,16 +1,17 @@
 @{
     ViewData["Title"] = "Archery shop";
 }
+<main>
+    <h1>@Model.Name</h1>
 
-<h1>@Model.Name</h1>
+    <img src="@Model.ImageUrl" alt="@Model.Name" width="300" height="250"/>
 
-<img src="@Model.ImageUrl" alt="@Model.Name" width="300" height="250"/>
+    <p>@Model.Description</p>
 
-<p>@Model.Description</p>
+    <p>Price: $@Model.Price</p>
 
-<p>Price: $@Model.Price</p>
-
-<form method="post" action=" ">
-    <input type="hidden" name="productId" value="@Model.Id" />
-    <button type="submit">Add to cart</button>
-</form>
+    <form method="post" action="/Cart">
+        <input type="hidden" name="productId" value="@Model.Id"/>
+        <button type="submit">Add to cart</button>
+    </form>
+</main>

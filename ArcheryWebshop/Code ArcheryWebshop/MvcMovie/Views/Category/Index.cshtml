@@ -1,14 +1,15 @@
 @{
     ViewData["Title"] = "Archery shop";
 }
+<main>
+    @model List<string>
 
-@model List<string>
+    <h1>Bow Types</h1>
 
-<h1>Bow Types</h1>
-
-<ul>
-    @foreach (var bowType in Model)
-    {
-        <li>@bowType</li>
-    }
-</ul>
+    <ul>
+        @foreach (var bowType in Model)
+        {
+            <li>@bowType</li>
+        }
+    </ul>
+</main>
