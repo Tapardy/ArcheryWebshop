@@ -16,12 +16,14 @@ public class Database
         _cnn = new SqlConnection(_connectionString);
         _cnn.Open();
         
-    }
+    }//return type ipv void met gets
+    //nieuwe methods, niet op 1 punt database functies uitvoeren
+    //list of json objecten teruggeven, veel aan elkaar gebonden, niet goed voor solid, loose coupled.
     public void DataValues(List<string> type)
     {
         Connection();
         SqlCommand command = new SqlCommand(
-            "SELECT bowType FROM dbi507362.ArcheryWebshop.Category", _cnn); 
+            "SELECT bowType FROM dbi507362.ArcheryWebshop.Category", _cnn); //geen conditie
         //TODO: create query variable, maybe pass data from controller to x class and then to here 
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
@@ -32,3 +34,5 @@ public class Database
         _cnn.Close();
     }
 }
+//ophalen list, 1 request
+//query ipv type in query, function AddParameter /// ruled out due to core 7.0

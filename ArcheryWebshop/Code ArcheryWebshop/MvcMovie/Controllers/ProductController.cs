@@ -23,5 +23,4 @@ namespace MvcArcheryWebshop.Controllers
             return View(product);
         }
     }
-
 }

@@ -8,6 +8,7 @@ namespace MvcArcheryWebshop.Controllers
         private List<string> _bowType = new List<string>();
         Database _database = new Database();
 
+        //objecten doorgeven met DTO
         // GET: Category
 
         public ActionResult Index()

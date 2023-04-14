@@ -38,6 +38,7 @@ body {
   color: #c0c0c0;
 }
 
+/*main*/
 main {
   padding-top: 40px; 
 }
@@ -86,8 +87,6 @@ main {
   flex-direction: column; /* set the flex direction to column */
   justify-content: space-between; 
 }
-
-
 
 .product h4 {
   margin-top: 0;
