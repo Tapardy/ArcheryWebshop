@@ -10,3 +10,30 @@ Documentatie:
 Mijn documentatie is nog niet ver, hier is ook niet echt aan gewerkt in sprint 2. Dit kwam doordat ik als tip had ik gekregen om wat te gaan coderen om niet alleen maar te documenteren.
 Deze tip had ik alleen wat te letterlijk genomen en mijn doel op coderen gezet, in plaats van een mix van beide.
 In de komende weken wil ik graag een ERD, goede UML en Use Cases maken.
+
+
+
+
+Sprint 3
+Code voortgang:
+In de code heb ik de database toegevoegd in de datalayer. Hier heb ik ook nog ervoor gezorgd dat de connection string niet in de code staat, zodat de code veiliger is.
+Veel tijd heb ik besteed aan research doen naar de verschillende dingen van de database, zoals thin en rich models en SOLID-principe hierin. Ik heb ook meerdere gesprekken gehad met docenten over deze vragen.
+Naast de database heb ik ook nog gewerkt aan een iets beter design voor de site. Dit design wordt nog aangepast, want er moet nog een figma design komen.
+Ook heb ik gekeken of ik CRUD kon toepassen in de code. Mijn idee was om dit toe te passen in de cart, maar ik wilde graag extra pagina's vermijden. Dit wilde ik bereiken door popup windows te maken. Dit is nog niet gelukt.
+
+Documentatie:
+In deze sprint heb ik wat meer aan de documentatie gedaan. Zelf vind ik dit nog te weinig, aangezien ik nog steeds een grote focus op code had (met name omdat dit leuker is)
+Ik heb hier aan mijn ERD gewerkt zodat ik in de code ook met de database kan werken. Daarnaast heb ik requirements opnieuw opgesteld en hier een use case diagram bij gemaakt.
+Dit use case diagram heb ik later laten vervallen en vervangen door use cases zelf.
+
+Feedback:
+Deze sprint heb ik veel gewerkt aan feedback vragen. Dit is mijn grote aandachtspunt. Deze sprint heb ik iedere week feedback gevraagt over mijn project.
+Dit vind ik zelf een erg goede verbetering en denk dat dit ook de goede richting in zal gaan in de toekomst. 
+Ik heb geprobeerd ook feedback te vragen als ik gewoon iets had gemaakt. Voorheen was het met name als ik een vraag had, wat ook natuurlijk goed is, maar moet niet de enige focus zijn.
+Daarnaast is het ook vaak dat ik iets op een andere manier had kunnen doen, waar ik dan achter was gekomen als ik feedback had gevraagd.
+
+Planning sprint 4:
+Voor sprint 4 wil ik mijn test cases, conceptueel design en mijn UML maken van de documentatie. Veel hiervan zal niet lang duren aangezien er al een basis is op een aantal vlakken.
+Tussen het documenteren in werk ik nog steeds aan de code. Mijn doel in deze sprint is om een category pagina te maken die ik volledig uit de database haal.
+Dit wil zeggen, product naam, foto, beschrijving, prijs, e.t.c. Als ik dit werkend kan maken deze sprint, zal de rest met de database niet te moeilijk zijn, aangezien het veel van het zelfde is.
+Als ik dit doel eerder haal dan gedacht, wil ik werken aan een shopping cart/ wishlist pagina. 
