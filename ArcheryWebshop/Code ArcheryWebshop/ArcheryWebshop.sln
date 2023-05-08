@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{1D7D2CE5-6D1A-4CDE-BCF1-F4103CD1F9F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicClassLibrary", "LogicClassLibrary\LogicClassLibrary.csproj", "{1D7D2CE5-6D1A-4CDE-BCF1-F4103CD1F9F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie", "MvcMovie\MvcMovie.csproj", "{07D954F8-BBDC-40C1-B996-26CAC38A2BA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcArcheryWebshop", "MvcArcheryWebshop\MvcArcheryWebshop.csproj", "{07D954F8-BBDC-40C1-B996-26CAC38A2BA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{52D70EC1-E465-465D-9C56-ED6984C41E2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{52D70EC1-E465-465D-9C56-ED6984C41E2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
