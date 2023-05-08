@@ -1,20 +1,22 @@
+@model MvcArcheryWebshop.Models.ProductModel
+
 @{
-    ViewData["Title"] = "Archery shop";
+    ViewData["Title"] = "Product Details";
 }
+
 <main>
     <h1>@Model.Name</h1>
 
-    <img src="@Model.ImageUrl" alt="@Model.Name" width="300" height="250"/>
+    <img src="@Model.ImageUrl" alt="@Model.Name" width="300" height="250" />
 
     <p>@Model.Description</p>
 
     <p>Price: $@Model.Price</p>
 
     <form method="post" action="/Cart">
-        <input type="hidden" name="productId" value="@Model.Id"/>
+        <input type="hidden" name="productId" value="@Model.ID" />
         <div class="product-info">
             <button class="btn btn-primary">Add to Cart</button>
         </div>
     </form>
-
 </main>
