@@ -1,4 +1,4 @@
-namespace DataLayer.DTO;
+namespace DAL.DTO;
 
 public class CartDTO
 {

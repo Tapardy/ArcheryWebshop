@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Archery shop";
+}
+
+<main>
+<section class="featured-products">
+        @foreach (var product in Model)
+        {
+            <div class="product">
+                <h4>@product.Name</h4>
+                <a href="@Url.Action("Details", "Product", new { id = product.ID })">
+                    <img src="@product.ImageUrl" alt="@product.Name">
+                </a>
+                <div class="product-info">
+                    <p>Price: $@product.Price.ToString("0.00")</p>
+                    <button class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+        }
+    </section>
+</main>

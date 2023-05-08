@@ -1,10 +1,13 @@
+using DAL;
+using DAL.Interface;
 using MvcArcheryWebshop.Models;
+using WebshopClassLibrary.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<IProductRepository>(); //IMPORTANT WHEN ADDING PAGES!!!! IN PROGRAM.CS, NOT IN STARTUP.CS
-
+builder.Services.AddScoped<IProductDAL, ProductDAL>(); //IMPORTANT WHEN ADDING PAGES!!!! IN PROGRAM.CS, NOT IN STARTUP.CS
+builder.Services.AddScoped<ProductService>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation(); //addrazorruntime makes it so edits are possible by saving the file while program is running
 var app = builder.Build();
 // Configure the HTTP request pipeline.
