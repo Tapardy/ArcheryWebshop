@@ -37,3 +37,29 @@ Voor sprint 4 wil ik mijn test cases, conceptueel design en mijn UML maken van d
 Tussen het documenteren in werk ik nog steeds aan de code. Mijn doel in deze sprint is om een category pagina te maken die ik volledig uit de database haal.
 Dit wil zeggen, product naam, foto, beschrijving, prijs, e.t.c. Als ik dit werkend kan maken deze sprint, zal de rest met de database niet te moeilijk zijn, aangezien het veel van het zelfde is.
 Als ik dit doel eerder haal dan gedacht, wil ik werken aan een shopping cart/ wishlist pagina. 
+
+
+
+
+Sprint 4
+Code voortgang:
+Ik ben erachter gekomen dat ik toch achter lig. Hier heb ik in de tijd wel wat stress bij gekregen tijdens het werken.
+In de code heb ik nu een werkende database integratie met 3 verschillende lagen.
+Producten kunnen weergeven worden en ook met crud verandert worden.
+Ik heb ook gewerkt aan de shopping cart werkend te krijgen, maar dit is nog niet helemaal gelukt. 
+Aangezien de shopping cart met name in de logic layer bijgehouden moet worden, zijn er heel wat problemen waar ik tegen aan loop. 
+Zelf vind ik het ook lastig om logica te implementeren in een mvc applicatie, maar dit komt met name door het gebruik van meerdere lagen en daar de functionaliteit van.
+Ik moet nog kijken hoe ik dit kan oplossen, maar ik ga hier hulp bij vragen, dus dat moet lukken.
+
+Code voortgang:
+UML is af, dus de documentatie is voor nu af
+
+Feedback:
+Mijn feedback is niet goed, het frequent vragen van feedback is wel goed. Ik lig achter op wat ik hoor te hebben, waardoor ik een prachtige rode lijn heb met sad smileys...
+Ik probeer dit met al mijn kracht te fixen en te zorgen dat ik het semester kan halen.
+
+planning sprint 5:
+Algoritmiek opdracht maken en de circustrein bijwerken zodat deze aan alles voldoet.
+Shopping cart, wishlist, categories en mogelijk nog de order functionaliteit toevoegen.
+Unit tests maken bij mijn code.
+Upgraden van 3 lagen naar 5 lagen structuur
