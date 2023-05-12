@@ -7,8 +7,5 @@ namespace DAL.Interface
         List<ProductDTO> GetProducts();
         ProductDTO GetProductByID(int id);
         // Other methods required by the Logic layer go here
-        void AddProduct(ProductDTO dto);
-        void EditProduct(ProductDTO dto);
-        void DeleteProduct(int id);
     }
 }

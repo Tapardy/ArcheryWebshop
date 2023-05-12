@@ -1,40 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
 using WebshopClassLibrary;
-using WebshopClassLibrary.Services;
+using WebshopClassLibrary.Mappers;
 
 namespace MvcArcheryWebshop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductService _productService;
+        private readonly ProductCollection _productCollection;
 
-        public HomeController(ProductService productService)
+        public HomeController(ProductCollection productCollection)
         {
-            _productService = productService;
+            _productCollection = productCollection;
         }
 
         public IActionResult Index()
         {
-            //Show featured products
-            var products = _productService.GetProducts();
-
-            var productModels = new List<ProductModel>();
-
-            foreach (var product in products)
-            {
-                var productModel = new ProductModel
-                {
-                    ID = product.ID,
-                    Name = product.Name,
-                    ImageUrl = product.ImageUrl,
-                    Price = product.Price,
-                    Description = product.Description
-                };
-
-                productModels.Add(productModel);
-            }
-
+            var products = _productCollection.GetProducts();
+            var productModels = products.Select(product => new ProductModel(product)).ToList();
             return View(productModels);
         }
     }

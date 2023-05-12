@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcArcheryWebshop", "MvcArc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{52D70EC1-E465-465D-9C56-ED6984C41E2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.csproj", "{0AF27E58-B1CC-4607-A4F9-AAF01DE21A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{4BA63F20-7B47-4FFF-A35A-C2B43BEA74AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{52D70EC1-E465-465D-9C56-ED6984C41E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52D70EC1-E465-465D-9C56-ED6984C41E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52D70EC1-E465-465D-9C56-ED6984C41E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF27E58-B1CC-4607-A4F9-AAF01DE21A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF27E58-B1CC-4607-A4F9-AAF01DE21A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF27E58-B1CC-4607-A4F9-AAF01DE21A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF27E58-B1CC-4607-A4F9-AAF01DE21A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA63F20-7B47-4FFF-A35A-C2B43BEA74AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA63F20-7B47-4FFF-A35A-C2B43BEA74AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA63F20-7B47-4FFF-A35A-C2B43BEA74AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA63F20-7B47-4FFF-A35A-C2B43BEA74AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

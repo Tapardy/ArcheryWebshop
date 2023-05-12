@@ -1,93 +1,157 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MvcArcheryWebshop.Models;
+using WebshopClassLibrary;
+using WebshopClassLibrary.Interface;
+using WebshopClassLibrary.Mappers;
 
 namespace MvcArcheryWebshop.Controllers
+
 {
     public class CartController : Controller
     {
-        // GET: Cart
-        public ActionResult Index()
-        {
-            return View();
-        }
+        private readonly ICartLogic _cartLogic;
+        private readonly ProductCollection _productCollection;
 
-        // GET: Cart/Details/5
-        public ActionResult Details(int id)
+        public CartController(ICartLogic cartLogic, ProductCollection productCollection)
         {
-            return View();
+            _cartLogic = cartLogic;
+            _productCollection = productCollection;
         }
-
-        // GET: Cart/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Cart/Create
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult AddToCart(int productId)
         {
-            try
+            // Retrieve the product details based on the productId
+            var product = _productCollection.GetProductByID(productId);
+            if (product != null)
             {
-                // TODO: Add insert logic here
+                // Assuming you have a CartItemModel to represent the added product in the cart
+                var cartItem = new CartItem()
+                {
+                    ProductID = productId,
+                    Quantity = 1, // Set the desired quantity here
+                };
 
-                return RedirectToAction(nameof(Index));
+                // Add the cartItem to the cart logic or perform any necessary operations
+                _cartLogic.AddToCart(cartItem);
             }
-            catch
-            {
-                return View();
-            }
+
+            // Store the productId in TempData
+            TempData["productId"] = productId;
+
+            return RedirectToAction("Index", "Cart");
+        }
+        
+        public IActionResult Index()
+        {
+            int? productId = TempData["productId"] as int?;
+
+            var cartItems = _cartLogic.GetCartItemsWithProductDetails(productId ?? 0);
+            var cartItemModels = cartItems.Select(cartItem => new CartItemModel(cartItem)).ToList();
+            TempData.Clear();
+            return View(cartItemModels);
+        }
+        
+        // GET: Cart/Clear
+        public ActionResult Clear()
+        {
+            _cartLogic.ClearCart();
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: Cart/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult RemoveFromCart()
         {
-            return View();
-        }
-
-        // POST: Cart/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Cart/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Cart/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            throw new NotImplementedException();
         }
     }
 }
+
+// public class CartController : Controller
+// {
+//     private readonly ICartLogic _cartLogic;
+//
+//     public CartController(ICartLogic cartLogic)
+//     {
+//         _cartLogic = cartLogic;
+//     }
+//
+//     public IActionResult Index()
+//     {
+//         var cartItems = _cartLogic.GetCartItems();
+//         var cartItemModels = cartItems.Select(cartItem => new CartItemModel
+//         {
+//             CartItemID = cartItem.CartItemID,
+//             ProductID = cartItem.ProductID,
+//             ProductName = cartItem.ProductName,
+//             Quantity = cartItem.Quantity,
+//             Price = cartItem.Price
+//         }).ToList();
+//         return View(cartItemModels);
+//     }
+//
+//     [HttpPost]
+//     public IActionResult AddToCart(int productID, int quantity)
+//     {
+//         _cartLogic.AddToCart(productID, quantity);
+//
+//         return RedirectToAction(nameof(Index));
+//     }
+//
+//     public IActionResult RemoveFromCart(int cartItemID)
+//     {
+//         _cartLogic.RemoveFromCart(cartItemID);
+//
+//         return RedirectToAction(nameof(Index));
+//     }
+//
+//     public IActionResult Clear()
+//     {
+//         _cartLogic.ClearCart();
+//
+//         return RedirectToAction(nameof(Index));
+//     }
+// }
+
+
+//     public class CartController : Controller
+//     {
+//         private readonly ICartLogic _cartLogic;
+//
+//         public CartController(ICartLogic cartLogic)
+//         {
+//             _cartLogic = cartLogic;
+//         }
+//
+//         public IActionResult Index()
+//         {
+//             var cartItems = _cartLogic.GetCartItems();
+//             var cartItemModels = cartItems.Select(cartItem => new CartItemModel(cartItem)).ToList();
+//             return View(cartItemModels);
+//         }
+//
+//         public IActionResult AddToCart(int productId, int quantity)
+//         {
+//             _cartLogic.AddToCart(productId, quantity);
+//
+//             return RedirectToAction(nameof(Index));
+//         }
+//
+//         public ActionResult RemoveFromCart(int cartItemId)
+//         {
+//             _cartLogic.RemoveFromCart(cartItemId);
+//
+//             return RedirectToAction(nameof(Index));
+//         }
+//
+//         // Other actions for managing the cart
+//
+//         // GET: Cart/Clear
+//         public ActionResult Clear()
+//         {
+//             _cartLogic.ClearCart();
+//
+//             return RedirectToAction(nameof(Index));
+//         }
+//     }
+// }
