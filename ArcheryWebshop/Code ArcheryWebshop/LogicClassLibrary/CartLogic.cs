@@ -7,7 +7,7 @@ namespace WebshopClassLibrary
 {
     public class CartLogic : ICartLogic
     {
-        private readonly List<CartItem> _cartItems;
+        private List<CartItem> _cartItems;
         private readonly ProductCollection _productCollection;
 
         public CartLogic(ProductCollection productCollection)
@@ -20,61 +20,60 @@ namespace WebshopClassLibrary
         {
             return _cartItems;
         }
-        public List<CartItem> GetCartItemsWithProductDetails(int id)
+        
+        public void AddToCart(List<CartItem> cartItems, CartItem newCartItem)
+        {
+            var existingCartItem = cartItems.FirstOrDefault(item => item.ProductID == newCartItem.ProductID);
+            if (existingCartItem != null)
+            {
+                existingCartItem.Quantity += newCartItem.Quantity;
+            }
+            else
+            {
+                cartItems.Add(newCartItem);
+            }
+        }
+
+        public List<CartItem> GetCartItemsWithProductDetails(List<CartItem> cartItems)
         {
             var cartItemsWithDetails = new List<CartItem>();
-            foreach (var cartItem in _cartItems)
-            {
-                var product = _productCollection.GetProductByID(id);
-                    if (product != null)
-                    {
-                        var cartItemWithDetails = new CartItem
-                        {
-                            CartItemID = cartItem.CartItemID,
-                            Quantity = cartItem.Quantity,
-                            ProductID = product.ID,
-                            ProductName = product.Name,
-                            Price = product.Price,
-                            // Set other product details as needed
-                        };
 
-                        cartItemsWithDetails.Add(cartItemWithDetails);
-                    }
+            foreach (var cartItem in cartItems)
+            {
+                // Get the product details for each cart item and create a new cart item with details
+                var product = _productCollection.GetProductByID(cartItem.ProductID);
+                if (product != null)
+                {
+                    var cartItemWithDetails = new CartItem
+                    {
+                        Quantity = cartItem.Quantity,
+                        ProductID = product.ID,
+                        ProductName = product.Name,
+                        Price = product.Price,
+                        // Set other product details as needed
+                    };
+
+                    cartItemsWithDetails.Add(cartItemWithDetails);
+                }
             }
 
             return cartItemsWithDetails;
         }
 
-
-        public void AddToCart(CartItem cartItem)
+        public void RemoveFromCart(List<CartItem> cartItems, int productId)
         {
-            // Check if the cart item already exists in the cart
-            var existingCartItem = _cartItems.FirstOrDefault(item => item.ProductID == cartItem.ProductID);
-            if (existingCartItem != null)
-            {
-                // If the cart item exists, update its quantity
-                existingCartItem.Quantity += cartItem.Quantity;
-            }
-            else
-            {
-                // If the cart item doesn't exist, add it to the cart
-                _cartItems.Add(cartItem);
-            }
-        }
-
-        public void RemoveFromCart(int cartItemId)
-        {
-            var cartItem = _cartItems.Find(item => item.CartItemID == cartItemId);
+            var cartItem = cartItems.FirstOrDefault(item => item.ProductID == productId);
             if (cartItem != null)
             {
-                _cartItems.Remove(cartItem);
+                cartItems.Remove(cartItem);
             }
         }
 
-        public void ClearCart()
+        public void ClearCart(List<CartItem> cartItems)
         {
-            _cartItems.Clear();
+            cartItems.Clear();
         }
+
     }
 }
 

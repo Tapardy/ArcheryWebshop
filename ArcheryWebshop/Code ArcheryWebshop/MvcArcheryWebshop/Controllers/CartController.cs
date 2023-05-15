@@ -18,140 +18,66 @@ namespace MvcArcheryWebshop.Controllers
             _productCollection = productCollection;
         }
         
+        public IActionResult Index()
+        {
+            var cartItems = HttpContext.Session.GetObject<List<CartItem>>("CartItems") ?? new List<CartItem>();
+            var cartItemsWithDetails = _cartLogic.GetCartItemsWithProductDetails(cartItems);
+
+            return View(cartItemsWithDetails);
+        }
+        
         [HttpPost]
         public IActionResult AddToCart(int productId)
         {
-            // Retrieve the product details based on the productId
             var product = _productCollection.GetProductByID(productId);
             if (product != null)
             {
-                // Assuming you have a CartItemModel to represent the added product in the cart
                 var cartItem = new CartItem()
                 {
                     ProductID = productId,
-                    Quantity = 1, // Set the desired quantity here
+                    ProductName = product.Name,
+                    Price = product.Price,
+                    Quantity = 1 // Set the desired quantity here
                 };
 
-                // Add the cartItem to the cart logic or perform any necessary operations
-                _cartLogic.AddToCart(cartItem);
-            }
+                var cartItems = HttpContext.Session.GetObject<List<CartItem>>("CartItems") ?? new List<CartItem>();
 
-            // Store the productId in TempData
-            TempData["productId"] = productId;
+                // Pass the cart items to the logic layer for manipulation
+                _cartLogic.AddToCart(cartItems, cartItem);
+
+                // Update the cart items in the session
+                HttpContext.Session.SetObject("CartItems", cartItems);
+            }
 
             return RedirectToAction("Index", "Cart");
         }
         
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult RemoveFromCart(int productId)
         {
-            int? productId = TempData["productId"] as int?;
+            var cartItems = HttpContext.Session.GetObject<List<CartItem>>("CartItems") ?? new List<CartItem>();
 
-            var cartItems = _cartLogic.GetCartItemsWithProductDetails(productId ?? 0);
-            var cartItemModels = cartItems.Select(cartItem => new CartItemModel(cartItem)).ToList();
-            TempData.Clear();
-            return View(cartItemModels);
-        }
-        
-        // GET: Cart/Clear
-        public ActionResult Clear()
-        {
-            _cartLogic.ClearCart();
+            // Pass the cart items to the logic layer for manipulation
+            _cartLogic.RemoveFromCart(cartItems, productId);
 
-            return RedirectToAction(nameof(Index));
+            // Update the cart items in the session
+            HttpContext.Session.SetObject("CartItems", cartItems);
+
+            return RedirectToAction("Index", "Cart");
         }
 
-        public IActionResult RemoveFromCart()
+        [HttpPost]
+        public IActionResult ClearCart()
         {
-            throw new NotImplementedException();
+            var cartItems = HttpContext.Session.GetObject<List<CartItem>>("CartItems") ?? new List<CartItem>();
+
+            // Clear the cart items
+            _cartLogic.ClearCart(cartItems);
+
+            // Update the cart items in the session
+            HttpContext.Session.SetObject("CartItems", cartItems);
+
+            return RedirectToAction("Index", "Cart");
         }
     }
 }
-
-// public class CartController : Controller
-// {
-//     private readonly ICartLogic _cartLogic;
-//
-//     public CartController(ICartLogic cartLogic)
-//     {
-//         _cartLogic = cartLogic;
-//     }
-//
-//     public IActionResult Index()
-//     {
-//         var cartItems = _cartLogic.GetCartItems();
-//         var cartItemModels = cartItems.Select(cartItem => new CartItemModel
-//         {
-//             CartItemID = cartItem.CartItemID,
-//             ProductID = cartItem.ProductID,
-//             ProductName = cartItem.ProductName,
-//             Quantity = cartItem.Quantity,
-//             Price = cartItem.Price
-//         }).ToList();
-//         return View(cartItemModels);
-//     }
-//
-//     [HttpPost]
-//     public IActionResult AddToCart(int productID, int quantity)
-//     {
-//         _cartLogic.AddToCart(productID, quantity);
-//
-//         return RedirectToAction(nameof(Index));
-//     }
-//
-//     public IActionResult RemoveFromCart(int cartItemID)
-//     {
-//         _cartLogic.RemoveFromCart(cartItemID);
-//
-//         return RedirectToAction(nameof(Index));
-//     }
-//
-//     public IActionResult Clear()
-//     {
-//         _cartLogic.ClearCart();
-//
-//         return RedirectToAction(nameof(Index));
-//     }
-// }
-
-
-//     public class CartController : Controller
-//     {
-//         private readonly ICartLogic _cartLogic;
-//
-//         public CartController(ICartLogic cartLogic)
-//         {
-//             _cartLogic = cartLogic;
-//         }
-//
-//         public IActionResult Index()
-//         {
-//             var cartItems = _cartLogic.GetCartItems();
-//             var cartItemModels = cartItems.Select(cartItem => new CartItemModel(cartItem)).ToList();
-//             return View(cartItemModels);
-//         }
-//
-//         public IActionResult AddToCart(int productId, int quantity)
-//         {
-//             _cartLogic.AddToCart(productId, quantity);
-//
-//             return RedirectToAction(nameof(Index));
-//         }
-//
-//         public ActionResult RemoveFromCart(int cartItemId)
-//         {
-//             _cartLogic.RemoveFromCart(cartItemId);
-//
-//             return RedirectToAction(nameof(Index));
-//         }
-//
-//         // Other actions for managing the cart
-//
-//         // GET: Cart/Clear
-//         public ActionResult Clear()
-//         {
-//             _cartLogic.ClearCart();
-//
-//             return RedirectToAction(nameof(Index));
-//         }
-//     }
-// }

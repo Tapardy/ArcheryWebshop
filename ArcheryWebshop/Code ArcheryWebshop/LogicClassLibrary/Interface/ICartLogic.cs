@@ -3,13 +3,13 @@ using DAL.DTO;
 namespace WebshopClassLibrary.Interface
 {
     public interface ICartLogic
-        {
-            List<CartItem> GetCartItemsWithProductDetails(int id);
-            void RemoveFromCart(int cartItemId);
-            void ClearCart();
+    {
+            List<CartItem> GetCartItemsWithProductDetails(List<CartItem> cartItems);
+            void RemoveFromCart(List<CartItem> cartItems, int productId);
+            void ClearCart(List<CartItem> cartItems);
             List<CartItem> GetCartItems();
-            void AddToCart(CartItem cartItem);
-        }
+            void AddToCart(List<CartItem> cartItems, CartItem newCartItem);
+    }
     }
 
 

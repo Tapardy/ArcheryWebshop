@@ -8,6 +8,15 @@ using WebshopClassLibrary.Mappers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(3600);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddScoped<IProductDAL, ProductDAL>(); //IMPORTANT WHEN ADDING PAGES!!!! IN PROGRAM.CS, NOT IN STARTUP.CS
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
 builder.Services.AddScoped<ICartDAL, CartDAL>();
@@ -30,6 +39,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 
