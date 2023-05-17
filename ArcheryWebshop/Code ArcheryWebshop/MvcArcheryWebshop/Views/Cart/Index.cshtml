@@ -27,7 +27,7 @@
                 <td>@(cartItem.Price * cartItem.Quantity)</td>
                 <td>
                     <form asp-action="RemoveFromCart" method="post">
-                        <input type="hidden" name="productId" value="@cartItem.ProductID" />
+                        <input type="hidden" name="productId" value="@cartItem.ProductID"/>
                         <button type="submit" class="btn btn-danger">Remove</button>
                     </form>
                 </td>
@@ -40,5 +40,8 @@
         <form asp-action="ClearCart" method="post">
             <button type="submit" class="btn btn-danger">Clear Cart</button>
         </form>
+    </div>
+    <div class="totalprice">
+        <h3>Total: @Model.Sum(item => item.Price * item.Quantity).ToString("C")</h3>
     </div>
 </main>

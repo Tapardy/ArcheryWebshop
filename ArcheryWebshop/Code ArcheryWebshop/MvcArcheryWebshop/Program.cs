@@ -20,9 +20,11 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IProductDAL, ProductDAL>(); //IMPORTANT WHEN ADDING PAGES!!!! IN PROGRAM.CS, NOT IN STARTUP.CS
 builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
 builder.Services.AddScoped<ICartDAL, CartDAL>();
+builder.Services.AddScoped<IWishlistLogic, WishlistLogic>();
 builder.Services.AddScoped<ICartLogic, CartLogic>();
 builder.Services.AddScoped<ProductCollection>();
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation(); //addrazorruntime makes it so edits are possible by saving the file while program is running
+builder.Services.AddRazorPages()
+    .AddRazorRuntimeCompilation(); //addrazorruntime makes it so edits are possible by saving the file while program is running
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

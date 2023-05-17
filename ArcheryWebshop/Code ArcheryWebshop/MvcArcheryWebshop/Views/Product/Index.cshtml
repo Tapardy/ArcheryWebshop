@@ -18,6 +18,12 @@
                     <p>Price: €@product.Price.ToString("0.00")</p>
                     <a href="@Url.Action("Edit", "Product", new { id = product.ID })" class="btn btn-primary">Edit</a>
                     <a href="@Url.Action("Delete", "Product", new { id = product.ID })" class="btn btn-yori">Delete</a>
+                    <form method="post" action="/Wishlist/AddToWishlist">
+                        <input type="hidden" name="productId" value="@product.ID"/>
+                        <div class="product-info">
+                            <button class="btn btn-primary">Add to Wishlist</button>
+                        </div>
+                    </form>
                     <form method="post" action="/Cart/AddToCart">
                         <input type="hidden" name="productId" value="@product.ID"/>
                         <div class="product-info">

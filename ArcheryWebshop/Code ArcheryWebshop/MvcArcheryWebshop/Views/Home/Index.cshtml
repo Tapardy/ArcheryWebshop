@@ -21,6 +21,12 @@
 
                 <div class="product-info">
                     <p>Price: €@product.Price.ToString("0.00")</p>
+                    <form method="post" action="/Wishlist/AddToWishlist">
+                        <input type="hidden" name="productId" value="@product.ID"/>
+                        <div class="product-info">
+                            <button class="btn btn-primary">Add to Wishlist</button>
+                        </div>
+                    </form>
                     <form method="post" action="/Cart/AddToCart">
                         <input type="hidden" name="productId" value="@product.ID"/>
                         <div class="product-info">

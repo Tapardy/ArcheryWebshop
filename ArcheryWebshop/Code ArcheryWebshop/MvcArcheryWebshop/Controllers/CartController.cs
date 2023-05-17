@@ -17,7 +17,7 @@ namespace MvcArcheryWebshop.Controllers
             _cartLogic = cartLogic;
             _productCollection = productCollection;
         }
-        
+
         public IActionResult Index()
         {
             var cartItems = HttpContext.Session.GetObject<List<CartItem>>("CartItems") ?? new List<CartItem>();
@@ -25,7 +25,7 @@ namespace MvcArcheryWebshop.Controllers
 
             return View(cartItemsWithDetails);
         }
-        
+
         [HttpPost]
         public IActionResult AddToCart(int productId)
         {
@@ -51,7 +51,7 @@ namespace MvcArcheryWebshop.Controllers
 
             return RedirectToAction("Index", "Cart");
         }
-        
+
         [HttpPost]
         public IActionResult RemoveFromCart(int productId)
         {

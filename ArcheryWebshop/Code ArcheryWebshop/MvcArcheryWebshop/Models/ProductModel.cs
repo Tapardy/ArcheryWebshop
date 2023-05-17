@@ -2,7 +2,7 @@ using WebshopClassLibrary;
 
 namespace MvcArcheryWebshop.Models
 {
-public class ProductModel
+    public class ProductModel
     {
         public int ID { get; set; }
         public int CategoryID { get; set; }
@@ -10,7 +10,7 @@ public class ProductModel
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        
+
         public ProductModel(Product product)
         {
             ID = product.ID;

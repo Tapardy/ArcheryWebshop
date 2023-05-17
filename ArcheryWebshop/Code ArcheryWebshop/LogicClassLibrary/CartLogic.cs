@@ -15,12 +15,7 @@ namespace WebshopClassLibrary
             _cartItems = new List<CartItem>();
             _productCollection = productCollection;
         }
-        
-        public List<CartItem> GetCartItems()
-        {
-            return _cartItems;
-        }
-        
+
         public void AddToCart(List<CartItem> cartItems, CartItem newCartItem)
         {
             var existingCartItem = cartItems.FirstOrDefault(item => item.ProductID == newCartItem.ProductID);
@@ -65,7 +60,14 @@ namespace WebshopClassLibrary
             var cartItem = cartItems.FirstOrDefault(item => item.ProductID == productId);
             if (cartItem != null)
             {
-                cartItems.Remove(cartItem);
+                if (cartItem.Quantity > 1)
+                {
+                    cartItem.Quantity--;
+                }
+                else
+                {
+                    cartItems.Remove(cartItem);
+                }
             }
         }
 
@@ -73,8 +75,5 @@ namespace WebshopClassLibrary
         {
             cartItems.Clear();
         }
-
     }
 }
-
-//thin/rich

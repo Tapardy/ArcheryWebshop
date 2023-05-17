@@ -28,9 +28,10 @@ public class ProductCollection
             };
             products.Add(product);
         }
+
         return products;
     }
-    
+
     public Product GetProductByID(int id)
     {
         ProductDTO dto = _productDAL.GetProductByID(id);
@@ -46,9 +47,10 @@ public class ProductCollection
             };
             return product;
         }
+
         return null;
     }
-    
+
     public void AddProduct(Product product)
     {
         ProductDTO dto = new ProductDTO(
@@ -79,6 +81,4 @@ public class ProductCollection
     {
         _productDAL.DeleteProduct(ID);
     }
-
-
 }

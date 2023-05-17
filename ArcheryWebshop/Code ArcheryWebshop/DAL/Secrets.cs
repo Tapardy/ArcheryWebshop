@@ -9,7 +9,8 @@ namespace DAL
         static Secrets()
         {
             // Load the secrets file
-            string secretsFilePath = "/Users/yorischarnigg/.microsoft/usersecrets/b57ad032-2a18-4724-b7c0-85fe635013df/secrets.json";
+            string secretsFilePath =
+                "/Users/yorischarnigg/.microsoft/usersecrets/b57ad032-2a18-4724-b7c0-85fe635013df/secrets.json";
             string secretsJson = File.ReadAllText(secretsFilePath);
 
             // Decrypt the secrets file if necessary

@@ -9,6 +9,7 @@ namespace DAL
     public class CategoryDAL : ICategoryDAL
     {
         private ICategoryDAL _categoryDalImplementation;
+
         public List<CategoryDTO> GetCategories()
         {
             List<CategoryDTO> categories = new List<CategoryDTO>();
@@ -85,7 +86,8 @@ namespace DAL
             using (SqlConnection connection = new SqlConnection(Secrets.ConnectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("UPDATE Categories SET Name = @Name WHERE ID = @CategoryId", connection);
+                SqlCommand command = new SqlCommand("UPDATE Categories SET Name = @Name WHERE ID = @CategoryId",
+                    connection);
                 command.Parameters.AddWithValue("@Name", category.Name);
                 command.Parameters.AddWithValue("@CategoryId", category.ID);
                 // Set other category properties as parameters if needed

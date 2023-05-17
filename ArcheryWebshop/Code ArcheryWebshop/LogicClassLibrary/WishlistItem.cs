@@ -1,6 +1,6 @@
 namespace WebshopClassLibrary;
 
-public class CartItem
+public class WishlistItem
 {
     public int UserID;
     public int ProductID { get; set; }

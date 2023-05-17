@@ -28,6 +28,7 @@ public class CategoryCollection
             };
             categories.Add(category);
         }
+
         return categories;
     }
 

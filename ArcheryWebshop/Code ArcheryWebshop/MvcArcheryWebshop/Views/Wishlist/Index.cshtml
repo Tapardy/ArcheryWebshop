@@ -1,0 +1,49 @@
+@model List<WebshopClassLibrary.WishlistItem>
+
+@{
+    ViewData["Title"] = "Wishlist";
+}
+
+<main>
+    <h1>Wishlist</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var wishlistItem in Model)
+        {
+            <tr>
+                <td>@wishlistItem.ProductName</td>
+                <td>@wishlistItem.Price.ToString("C")</td>
+                <td>
+                    <form method="post" action="/Cart/AddToCart">
+                        <input type="hidden" name="productId" value="@wishlistItem.ProductID"/>
+                        <div class="product-info">
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </form>
+                    <form asp-action="RemoveFromWishlist" method="post">
+                        <input type="hidden" name="productId" value="@wishlistItem.ProductID"/>
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <div>
+        <form asp-action="ClearWishlist" method="post">
+            <button type="submit" class="btn btn-danger">Clear Wishlist</button>
+        </form>
+    </div>
+    <div class="totalprice">
+        <h3>Total: @Model.Sum(item => item.Price).ToString("C")</h3>
+    </div>
+</main>

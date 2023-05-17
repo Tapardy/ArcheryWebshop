@@ -1,4 +1,3 @@
-
 using DAL.DTO;
 using WebshopClassLibrary;
 
@@ -19,8 +18,7 @@ public class CategoryModel
 
     public CategoryModel()
     {
-        
     }
-    
+
     //TODO: More research on how to use the models, currently know it is for detailed info
 }

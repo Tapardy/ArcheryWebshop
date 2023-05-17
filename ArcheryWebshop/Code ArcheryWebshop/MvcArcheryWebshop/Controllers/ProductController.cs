@@ -138,6 +138,7 @@ namespace MvcArcheryWebshop.Controllers
             {
                 return NotFound();
             }
+
             _productCollection.DeleteProduct(productModel.ID);
             return RedirectToAction(nameof(Index));
         }
