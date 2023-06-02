@@ -1,7 +1,6 @@
+using DAL;
 using Microsoft.AspNetCore.Mvc;
-using MvcArcheryWebshop.Models;
 using WebshopClassLibrary;
-using WebshopClassLibrary.Interface;
 using WebshopClassLibrary.Mappers;
 
 namespace MvcArcheryWebshop.Controllers
@@ -9,13 +8,13 @@ namespace MvcArcheryWebshop.Controllers
 {
     public class CartController : Controller
     {
-        private readonly ICartLogic _cartLogic;
-        private readonly ProductCollection _productCollection;
+        private readonly CartLogic _cartLogic;
+        private readonly ProductService _productService;
 
-        public CartController(ICartLogic cartLogic, ProductCollection productCollection)
+        public CartController()
         {
-            _cartLogic = cartLogic;
-            _productCollection = productCollection;
+            _productService = new ProductService(new ProductDAL());
+            _cartLogic = new CartLogic(_productService);
         }
 
         public IActionResult Index()
@@ -29,7 +28,7 @@ namespace MvcArcheryWebshop.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId)
         {
-            var product = _productCollection.GetProductByID(productId);
+            var product = _productService.GetProductByID(productId);
             if (product != null)
             {
                 var cartItem = new CartItem()

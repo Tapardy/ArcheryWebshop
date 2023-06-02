@@ -5,11 +5,11 @@ using DAL.Interface;
 
 namespace WebshopClassLibrary.Mappers;
 
-public class CategoryCollection
+public class CategoryService
 {
     private readonly ICategoryDAL _categoryDAL;
 
-    public CategoryCollection(ICategoryDAL categoryDAL)
+    public CategoryService(ICategoryDAL categoryDAL)
     {
         _categoryDAL = categoryDAL;
     }

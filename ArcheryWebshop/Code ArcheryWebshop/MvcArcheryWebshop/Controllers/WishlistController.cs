@@ -1,6 +1,6 @@
+using DAL;
 using Microsoft.AspNetCore.Mvc;
 using WebshopClassLibrary;
-using WebshopClassLibrary.Interface;
 using WebshopClassLibrary.Mappers;
 
 namespace MvcArcheryWebshop.Controllers
@@ -8,13 +8,13 @@ namespace MvcArcheryWebshop.Controllers
 {
     public class WishlistController : Controller
     {
-        private readonly IWishlistLogic _wishlistLogic;
-        private readonly ProductCollection _productCollection;
+        private readonly WishlistLogic _wishlistLogic;
+        private readonly ProductService _productService;
 
-        public WishlistController(IWishlistLogic wishlistLogic, ProductCollection productCollection)
+        public WishlistController()
         {
-            _wishlistLogic = wishlistLogic;
-            _productCollection = productCollection;
+            _productService = new ProductService(new ProductDAL());
+            _wishlistLogic = new WishlistLogic(_productService);
         }
 
         public IActionResult Index()
@@ -29,7 +29,7 @@ namespace MvcArcheryWebshop.Controllers
         [HttpPost]
         public IActionResult AddToWishlist(int productId)
         {
-            var product = _productCollection.GetProductByID(productId);
+            var product = _productService.GetProductByID(productId);
             if (product != null)
             {
                 var wishlistItem = new WishlistItem()

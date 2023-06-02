@@ -1,22 +1,22 @@
+using DAL;
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
-using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
 
 namespace MvcArcheryWebshop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductCollection _productCollection;
+        private readonly ProductService _productService;
 
-        public HomeController(ProductCollection productCollection)
+        public HomeController()
         {
-            _productCollection = productCollection;
+            _productService = new ProductService(new ProductDAL());
         }
 
         public IActionResult Index()
         {
-            var products = _productCollection.GetProducts();
+            var products = _productService.GetProducts();
             var productModels = products.Select(product => new ProductModel(product)).ToList();
             return View(productModels);
         }

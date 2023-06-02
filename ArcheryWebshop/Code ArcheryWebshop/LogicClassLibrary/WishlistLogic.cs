@@ -1,17 +1,17 @@
-using WebshopClassLibrary.Interface;
+
 using WebshopClassLibrary.Mappers;
 
 namespace WebshopClassLibrary
 {
-    public class WishlistLogic : IWishlistLogic
+    public class WishlistLogic
     {
         private List<WishlistItem> _wishlistItems;
-        private readonly ProductCollection _productCollection;
+        private readonly ProductService _productService;
 
-        public WishlistLogic(ProductCollection productCollection)
+        public WishlistLogic(ProductService productService)
         {
             _wishlistItems = new List<WishlistItem>();
-            _productCollection = productCollection;
+            _productService = productService;
         }
 
         public void AddToWishlist(List<WishlistItem> wishlistItems, WishlistItem newWishlistItem)
@@ -35,7 +35,7 @@ namespace WebshopClassLibrary
             foreach (var wishlistItem in wishlistItems)
             {
                 // Get the product details for each wishlist item and create a new wishlist item with details
-                var product = _productCollection.GetProductByID(wishlistItem.ProductID);
+                var product = _productService.GetProductByID(wishlistItem.ProductID);
                 if (product != null)
                 {
                     var wishlistItemWithDetails = new WishlistItem

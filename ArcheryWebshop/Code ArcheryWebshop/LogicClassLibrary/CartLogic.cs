@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
-using WebshopClassLibrary.Interface;
 using WebshopClassLibrary.Mappers;
 
 namespace WebshopClassLibrary
 {
-    public class CartLogic : ICartLogic
+    public class CartLogic
     {
         private List<CartItem> _cartItems;
-        private readonly ProductCollection _productCollection;
+        private readonly ProductService _productService;
 
-        public CartLogic(ProductCollection productCollection)
+        public CartLogic(ProductService productService)
         {
             _cartItems = new List<CartItem>();
-            _productCollection = productCollection;
+            _productService = productService;
         }
 
         public void AddToCart(List<CartItem> cartItems, CartItem newCartItem)
@@ -36,7 +35,7 @@ namespace WebshopClassLibrary
             foreach (var cartItem in cartItems)
             {
                 // Get the product details for each cart item and create a new cart item with details
-                var product = _productCollection.GetProductByID(cartItem.ProductID);
+                var product = _productService.GetProductByID(cartItem.ProductID);
                 if (product != null)
                 {
                     var cartItemWithDetails = new CartItem

@@ -1,11 +1,9 @@
 using DAL.DTO;
 using DAL.Interface;
-using WebshopClassLibrary.Interface;
-using WebshopClassLibrary.Mappers.Interface;
 
 namespace WebshopClassLibrary.Mappers;
 
-public class CartCollection : ICartCollection
+public class CartService
 {
     public void AddCartItem(CartDTO cartDTO)
     {

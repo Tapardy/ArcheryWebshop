@@ -6,8 +6,6 @@ namespace DAL;
 
 public class ProductDAL : IProductDAL
 {
-    private IProductDAL _productDalImplementation;
-
     public List<ProductDTO> GetProducts()
     {
         List<ProductDTO> products = new List<ProductDTO>();

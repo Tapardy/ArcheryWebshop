@@ -1,3 +1,4 @@
+using DAL;
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
 using WebshopClassLibrary;
@@ -7,23 +8,22 @@ namespace MvcArcheryWebshop.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductCollection _productCollection;
-
-        public ProductController(ProductCollection productCollection)
+        private readonly ProductService _productService;
+        public ProductController()
         {
-            _productCollection = productCollection;
+            _productService = new ProductService(new ProductDAL());
         }
 
         public IActionResult Index()
         {
-            var products = _productCollection.GetProducts();
+            var products = _productService.GetProducts();
             var productModels = products.Select(product => new ProductModel(product)).ToList();
             return View(productModels);
         }
 
         public IActionResult Details(int id)
         {
-            var product = _productCollection.GetProductByID(id);
+            var product = _productService.GetProductByID(id);
 
             if (product == null)
             {
@@ -56,7 +56,7 @@ namespace MvcArcheryWebshop.Controllers
                     Description = productModel.Description
                 };
 
-                _productCollection.AddProduct(product);
+                _productService.AddProduct(product);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -67,7 +67,7 @@ namespace MvcArcheryWebshop.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            var product = _productCollection.GetProductByID(id);
+            var product = _productService.GetProductByID(id);
 
             if (product == null)
             {
@@ -91,7 +91,7 @@ namespace MvcArcheryWebshop.Controllers
 
             if (ModelState.IsValid)
             {
-                var product = _productCollection.GetProductByID(id);
+                var product = _productService.GetProductByID(id);
 
                 if (product == null)
                 {
@@ -104,7 +104,7 @@ namespace MvcArcheryWebshop.Controllers
                 product.Price = productModel.Price;
                 product.Description = productModel.Description;
 
-                _productCollection.EditProduct(product);
+                _productService.EditProduct(product);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -115,7 +115,7 @@ namespace MvcArcheryWebshop.Controllers
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {
-            var product = _productCollection.GetProductByID(id);
+            var product = _productService.GetProductByID(id);
 
             if (product == null)
             {
@@ -132,14 +132,14 @@ namespace MvcArcheryWebshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductModel productModel)
         {
-            var product = _productCollection.GetProductByID(productModel.ID);
+            var product = _productService.GetProductByID(productModel.ID);
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            _productCollection.DeleteProduct(productModel.ID);
+            _productService.DeleteProduct(productModel.ID);
             return RedirectToAction(nameof(Index));
         }
     }

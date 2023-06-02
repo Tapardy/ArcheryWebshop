@@ -36,12 +36,13 @@
         </tbody>
     </table>
 
-    <div>
+    <div class="total-price">
+        <h3>Total: @Model.Sum(item => item.Price * item.Quantity).ToString("C")</h3>
+    </div>
+
+    <div class="cart-actions">
         <form asp-action="ClearCart" method="post">
             <button type="submit" class="btn btn-danger">Clear Cart</button>
         </form>
-    </div>
-    <div class="totalprice">
-        <h3>Total: @Model.Sum(item => item.Price * item.Quantity).ToString("C")</h3>
     </div>
 </main>

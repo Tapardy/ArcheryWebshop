@@ -19,18 +19,17 @@ namespace MvcArcheryWebshop.Models
                 ProductName = cartItem.Name;
             }
         }
-
-
-        public CartItemModel()
-        {
-        }
-
+        
         public CartItemModel(CartItem cartItem)
         {
             Quantity = cartItem.Quantity;
             ProductID = cartItem.ProductID;
             ProductName = cartItem.ProductName;
             Price = cartItem.Price;
+        }
+        
+        public CartItemModel()
+        {
         }
     }
 }
