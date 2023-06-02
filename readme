@@ -63,3 +63,22 @@ Algoritmiek opdracht maken en de circustrein bijwerken zodat deze aan alles vold
 Shopping cart, wishlist, categories en mogelijk nog de order functionaliteit toevoegen.
 Unit tests maken bij mijn code.
 Upgraden van 3 lagen naar 5 lagen structuur
+
+
+
+
+Sprint 5
+Code voortgang:
+Ik heb heel hard gewerkt om mijn achterstand in te halen. Dit lukt steeds beter. Ik maak erg grote stappen steeds, het is dus niet onmogelijk, en ik zal het halen.
+In de code heb ik nu dependency injection en inversion gebruikt, nu snap ik ook volledig waarom ik dit gebruik en al.
+Ik heb een extra mock projectje gemaakt met een factory erin waar ik dit mee aan toonde, maar later heb ik in mijn main app gewerkt met de injection van een dal als interface naar de logic layer.
+Verder heb ik nog gewerkt aan mijn algoritmiek. Mijn algoritmiek heeft veel verbeteringen nodig, aangezien ik geen managers had, maar alles in de code liet gebeuren, wat niet de bedoeling was.
+Nu ben ik deze code opnieuw aan het schrijven en kijken of ik de eisen kan behalen die ik wil. 
+
+Feedback:
+Ik vraag meer om hulp en feedback. Dit is zeer belangrijk, zeker nu dat ik zo erg achter sta. Ik zal dit blijven doen en zo hard mogelijk werken om het semester te halen.
+
+Planning eind sprint:
+Mijn planning van de eind sprint is het afmaken van mijn algoritmiek opdracht, oftewel de eisen die ik wil behalen.
+Als ik dan nog tijd heb, ga ik de order functionaliteit in mijn mvc applicatie maken, en hier ga ik met many to many relaties werken.
+Verder is mijn planning voor de eind sprint gewoon, het semester halen :).
