@@ -1,20 +1,16 @@
 ﻿namespace CircusTreinClassLibrary;
+
 public class Train
 {
-    private List<Wagon> wagons;
-    public Train()
-    {
-        wagons = new List<Wagon>();
-    }
+    public List<Wagon> wagons = new List<Wagon>();
 
     public void AddAnimal(Animal animal)
     {
-        var addedToWagon = false;
+        bool addedToWagon = false;
         foreach (var wagon in wagons)
         {
-            if (wagon.CanAddAnimal(animal))
+            if (wagon.AddAnimal(animal))
             {
-                wagon.animals.Add(animal);
                 addedToWagon = true;
                 break;
             }
@@ -23,22 +19,12 @@ public class Train
         if (!addedToWagon)
         {
             var newWagon = new Wagon();
-            newWagon.animals.Add(animal);
+            newWagon.AddAnimal(animal);
             wagons.Add(newWagon);
         }
     }
-
-    public void DisplayWagons()
-    {
-        int wagonCount = wagons.Count;
-        Console.WriteLine($"Train has {wagonCount} wagon{(wagonCount > 1 ? "s" : "")}:");
-        foreach (var wagon in wagons)
-        {
-            Console.WriteLine("Wagon with animals:");
-            foreach (var animal in wagon.animals)
-            {
-                Console.WriteLine($"Size: {animal.Size}, Type: {animal.Type}");
-            }
-        }
-    }
 }
+
+//ireadonly list
+//int.tryparse voor de bool
+
