@@ -8,6 +8,7 @@ public class ProductDTO
     public string ImageUrl { get; set; }
     public decimal Price { get; set; }
     public string Description { get; set; }
+    public string CategoryName { get; set; }
 
     public ProductDTO(int id, string name, string imageUrl, decimal price, string description)
     {
@@ -18,10 +19,10 @@ public class ProductDTO
         Description = description;
     }
 
-    public ProductDTO(int id, int categoryId, string name, string imageUrl, decimal price, string description)
+    public ProductDTO(int id, string categoryName, string name, string imageUrl, decimal price, string description)
     {
         ID = id;
-        CategoryID = categoryId;
+        CategoryName = categoryName;
         Name = name;
         ImageUrl = imageUrl;
         Price = price;

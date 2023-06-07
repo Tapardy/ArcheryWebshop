@@ -49,5 +49,10 @@ namespace DAL.Mock
                 _products.Remove(product);
             }
         }
+
+        public List<CategoryDTO> GetCategories()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

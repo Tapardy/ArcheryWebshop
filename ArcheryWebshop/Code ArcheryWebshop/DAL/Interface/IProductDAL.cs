@@ -12,5 +12,6 @@ namespace DAL.Interface
         void AddProduct(ProductDTO dto);
         void EditProduct(ProductDTO dto);
         void DeleteProduct(int id);
+        List<CategoryDTO> GetCategories();
     }
 }

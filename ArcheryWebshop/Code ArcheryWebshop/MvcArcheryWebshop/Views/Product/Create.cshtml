@@ -12,8 +12,8 @@
             <input asp-for="ID" class="form-control"/>
         </div>
         <div class="form-group">
-            <label asp-for="CategoryID">Category ID</label>
-            <input asp-for="CategoryID" class="form-control"/>
+            <label asp-for="CategoryName">Category Name</label>
+            <select asp-for="CategoryName" asp-items="@(new SelectList(ViewBag.CategoryNames))" class="form-control"></select>
         </div>
         <div class="form-group">
             <label asp-for="Name">Name:</label>

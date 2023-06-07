@@ -37,6 +37,8 @@ namespace MvcArcheryWebshop.Controllers
 
         public ActionResult Create()
         {
+            var categoryNames = _productService.GetCategoryNames(); // Adjust the method as per your implementation
+            ViewBag.CategoryNames = categoryNames;
             return View();
         }
 
@@ -49,7 +51,7 @@ namespace MvcArcheryWebshop.Controllers
                 var product = new Product
                 {
                     ID = productModel.ID,
-                    CategoryID = productModel.CategoryID,
+                    CategoryName = productModel.CategoryName,
                     Name = productModel.Name,
                     ImageUrl = productModel.ImageUrl,
                     Price = productModel.Price,
@@ -61,6 +63,8 @@ namespace MvcArcheryWebshop.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            var categoryNames = _productService.GetCategoryNames(); // Adjust the method as per your implementation
+            ViewBag.CategoryNames = categoryNames;
             return View(productModel);
         }
 

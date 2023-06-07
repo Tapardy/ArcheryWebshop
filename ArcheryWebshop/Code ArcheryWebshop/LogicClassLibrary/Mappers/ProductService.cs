@@ -18,7 +18,7 @@ namespace WebshopClassLibrary.Mappers
             return new ProductDTO
             {
                 ID = product.ID,
-                CategoryID = product.CategoryID,
+                CategoryName = product.CategoryName,
                 Name = product.Name,
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
@@ -31,7 +31,7 @@ namespace WebshopClassLibrary.Mappers
             return new Product
             {
                 ID = dto.ID,
-                CategoryID = dto.CategoryID,
+                CategoryName = dto.CategoryName,
                 Name = dto.Name,
                 ImageUrl = dto.ImageUrl,
                 Price = dto.Price,
@@ -50,6 +50,12 @@ namespace WebshopClassLibrary.Mappers
             }
 
             return products;
+        }
+        
+        public List<string> GetCategoryNames()
+        {
+            var categories = _productDAL.GetCategories(); // Adjust the method as per your implementation
+            return categories.Select(category => category.Name).ToList();
         }
 
         public Product GetProductByID(int id)
