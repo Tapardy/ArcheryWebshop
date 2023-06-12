@@ -1,5 +1,6 @@
 using DAL.DTO;
 using DAL.Mock;
+using LogicLayer;
 using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
 
@@ -24,10 +25,10 @@ namespace UnitTest
             // Arrange
             var expectedProducts = new List<ProductDTO>
             {
-                new ProductDTO { ID = 1, CategoryID = 1, Name = "Product 1" },
-                new ProductDTO { ID = 2, CategoryID = 2, Name = "Product 2" },
-                new ProductDTO { ID = 3, CategoryID = 3, Name = "Product 3" },
-                new ProductDTO { ID = 4, CategoryID = 3, Name = "Product 4" }
+                new ProductDTO { ID = 1, Name = "Product 1" },
+                new ProductDTO { ID = 2, Name = "Product 2" },
+                new ProductDTO { ID = 3, Name = "Product 3" },
+                new ProductDTO { ID = 4, Name = "Product 4" }
             };
             foreach (var product in expectedProducts)
             {
@@ -35,7 +36,7 @@ namespace UnitTest
             }
 
             // Act
-            var result = _productService.GetProducts();
+            var result = _productService.GetAllProducts();
 
             // Assert
             Assert.AreEqual(expectedProducts.Count, result.Count);
@@ -45,7 +46,7 @@ namespace UnitTest
         public void GetProductByID_ExistingID_ReturnsProduct()
         {
             // Arrange
-            var expectedProduct = new ProductDTO { ID = 1, CategoryID = 1, Name = "Product 1" };
+            var expectedProduct = new ProductDTO { ID = 1, Name = "Product 1" };
             _mockProductDAL.AddProduct(expectedProduct);
 
             // Act
@@ -60,7 +61,7 @@ namespace UnitTest
         public void GetProductByID_NonExistingID_ReturnsNull()
         {
             // Arrange
-            // No need to add any products to the mockProductDAL
+            //no need to add any products to the mockProductDAL
 
             // Act
             var result = _productService.GetProductByID(9999);
@@ -138,7 +139,7 @@ namespace UnitTest
                 Price = 9.99m,
                 Description = "To be deleted"
             };
-
+            
             _mockProductDAL.AddProduct(productToDelete);
 
             // Act

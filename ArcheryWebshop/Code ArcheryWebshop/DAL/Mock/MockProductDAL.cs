@@ -11,28 +11,29 @@ namespace DAL.Mock
         {
             _products = new List<ProductDTO>();
         }
-
-        public List<ProductDTO> GetProducts()
-        {
-            // Return the mock list of products
-            return _products;
-        }
-
+        
         public ProductDTO GetProductByID(int id)
         {
-            // Find the product in the mock list based on the ID
+            //find the product in the mock list based on the id
             return _products.Find(p => p.ID == id);
+        }
+
+
+        public List<ProductDTO> GetAllProducts()
+        {
+            //return the mock list of products
+            return _products;
         }
 
         public void AddProduct(ProductDTO dto)
         {
-            // Add the product to the mock list
+            //add the product to the mock list
             _products.Add(dto);
         }
 
         public void EditProduct(ProductDTO dto)
         {
-            // Update the product in the mock list
+            //update the product in the mock list
             int index = _products.FindIndex(p => p.ID == dto.ID);
             if (index != -1)
             {
@@ -42,17 +43,12 @@ namespace DAL.Mock
 
         public void DeleteProduct(int id)
         {
-            // Remove the product from the mock list
+            //remove the product from the mock list
             ProductDTO product = _products.Find(p => p.ID == id);
             if (product != null)
             {
                 _products.Remove(product);
             }
-        }
-
-        public List<CategoryDTO> GetCategories()
-        {
-            throw new NotImplementedException();
         }
     }
 }

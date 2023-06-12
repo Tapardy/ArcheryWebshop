@@ -1,91 +1,80 @@
-using DAL;
+using System.Collections.Generic;
+using System.Linq;
 using DAL.DTO;
 using DAL.Interface;
+using WebshopClassLibrary;
 
-namespace WebshopClassLibrary.Mappers
+namespace LogicLayer
 {
     public class ProductService
     {
-        private readonly IProductDAL _productDAL;
+        private readonly IProductDAL _productDal;
 
         public ProductService(IProductDAL productDal)
         {
-            _productDAL = productDal;
+            _productDal = productDal;
         }
-        
-        private ProductDTO MapToDTO(Product product)
+
+        public Product GetProductByID(int id)
+        {
+            ProductDTO productDto = _productDal.GetProductByID(id);
+            if (productDto == null)
+            {
+                return null;
+            }
+
+            return MapToProduct(productDto);
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            List<ProductDTO> productDtos = _productDal.GetAllProducts();
+            List<Product> products = productDtos.Select(MapToProduct).ToList();
+
+            return products;
+        }
+
+        public void AddProduct(Product product)
+        {
+            ProductDTO productDto = MapToProductDto(product);
+            _productDal.AddProduct(
+                productDto); // Update the AddProduct method in the DAL to return the generated product ID
+        }
+
+        public void EditProduct(Product product)
+        {
+            ProductDTO productDto = MapToProductDto(product);
+            _productDal.EditProduct(productDto);
+        }
+
+        public void DeleteProduct(int ID)
+        {
+            // Delete the product
+            _productDal.DeleteProduct(ID);
+        }
+
+        private Product MapToProduct(ProductDTO productDto)
+        {
+            return new Product
+            {
+                ID = productDto.ID,
+                Name = productDto.Name,
+                ImageUrl = productDto.ImageUrl,
+                Price = productDto.Price,
+                Description = productDto.Description
+            };
+        }
+
+        private ProductDTO MapToProductDto(Product product)
         {
             return new ProductDTO
             {
                 ID = product.ID,
-                CategoryName = product.CategoryName,
                 Name = product.Name,
                 ImageUrl = product.ImageUrl,
                 Price = product.Price,
                 Description = product.Description
             };
-        }
-
-        private Product MapToProduct(ProductDTO dto)
-        {
-            return new Product
-            {
-                ID = dto.ID,
-                CategoryName = dto.CategoryName,
-                Name = dto.Name,
-                ImageUrl = dto.ImageUrl,
-                Price = dto.Price,
-                Description = dto.Description
-            };
-        }
-
-        public List<Product> GetProducts()
-        {
-            List<ProductDTO> productDTOs = _productDAL.GetProducts();
-            List<Product> products = new List<Product>();
-            foreach (ProductDTO dto in productDTOs)
-            {
-                Product product = MapToProduct(dto);
-                products.Add(product);
-            }
-
-            return products;
-        }
-        
-        public List<string> GetCategoryNames()
-        {
-            var categories = _productDAL.GetCategories(); // Adjust the method as per your implementation
-            return categories.Select(category => category.Name).ToList();
-        }
-
-        public Product GetProductByID(int id)
-        {
-            ProductDTO dto = _productDAL.GetProductByID(id);
-            if (dto != null)
-            {
-                Product product = MapToProduct(dto);
-                return product;
-            }
-
-            return null;
-        }
-
-        public void AddProduct(Product product)
-        {
-            ProductDTO dto = MapToDTO(product);
-
-            _productDAL.AddProduct(dto);
-        }
-
-        public void EditProduct(Product product)
-        {
-            ProductDTO dto = MapToDTO(product);
-            _productDAL.EditProduct(dto);
-        }
-
-        public void DeleteProduct(int ID)
-        {
-            _productDAL.DeleteProduct(ID);
         }
     }
 }

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorPlacementTool4", "VisitorPlacementTool4\VisitorPlacementTool4.csproj", "{2BFA694C-14F8-414D-B6F6-7AC74B6704F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{8B59FDAF-1437-4B57-8FCF-29AA4A1D5015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{FC95DEB3-769F-4D2C-B74B-AAC43B3DB1D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BFA694C-14F8-414D-B6F6-7AC74B6704F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BFA694C-14F8-414D-B6F6-7AC74B6704F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BFA694C-14F8-414D-B6F6-7AC74B6704F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BFA694C-14F8-414D-B6F6-7AC74B6704F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B59FDAF-1437-4B57-8FCF-29AA4A1D5015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B59FDAF-1437-4B57-8FCF-29AA4A1D5015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B59FDAF-1437-4B57-8FCF-29AA4A1D5015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B59FDAF-1437-4B57-8FCF-29AA4A1D5015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC95DEB3-769F-4D2C-B74B-AAC43B3DB1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC95DEB3-769F-4D2C-B74B-AAC43B3DB1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC95DEB3-769F-4D2C-B74B-AAC43B3DB1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC95DEB3-769F-4D2C-B74B-AAC43B3DB1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

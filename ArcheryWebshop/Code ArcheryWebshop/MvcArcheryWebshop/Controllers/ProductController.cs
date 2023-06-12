@@ -1,22 +1,29 @@
 using DAL;
+using LogicLayer;
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
 using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
+using WebshopClassLibrary.Mappers.LogicLayer;
 
 namespace MvcArcheryWebshop.Controllers
 {
     public class ProductController : Controller
     {
         private readonly ProductService _productService;
+        private readonly CategoryService _categoryService;
+        private readonly CategoryProductService _categoryProductService;
+
         public ProductController()
         {
             _productService = new ProductService(new ProductDAL());
+            _categoryService = new CategoryService(new CategoryDAL());
+            _categoryProductService = new CategoryProductService(new CategoryProductDAL());
         }
 
         public IActionResult Index()
         {
-            var products = _productService.GetProducts();
+            var products = _productService.GetAllProducts();
             var productModels = products.Select(product => new ProductModel(product)).ToList();
             return View(productModels);
         }
@@ -32,26 +39,36 @@ namespace MvcArcheryWebshop.Controllers
 
             var productModel = new ProductModel(product);
 
+            //retrieve the category id for the product
+            var categoryIds = _categoryProductService.GetCategoryIdsForProduct(id);
+
+            //retrieve the category names based on the id
+            var categories = _categoryService.GetCategoriesByIds(categoryIds);
+
+            //assign the category names to the product model
+            productModel.Categories = categories;
+
             return View(productModel);
         }
 
+
         public ActionResult Create()
         {
-            var categoryNames = _productService.GetCategoryNames(); // Adjust the method as per your implementation
-            ViewBag.CategoryNames = categoryNames;
+            var categories = _categoryService.GetAllCategories();
+            ViewBag.Categories = categories;
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductModel productModel)
+        public ActionResult Create(ProductModel productModel, int[] SelectedCategoryIds)
         {
             if (ModelState.IsValid)
             {
                 var product = new Product
                 {
                     ID = productModel.ID,
-                    CategoryName = productModel.CategoryName,
                     Name = productModel.Name,
                     ImageUrl = productModel.ImageUrl,
                     Price = productModel.Price,
@@ -60,13 +77,25 @@ namespace MvcArcheryWebshop.Controllers
 
                 _productService.AddProduct(product);
 
+                //assign selected categories to the product
+                if (SelectedCategoryIds != null)
+                {
+                    foreach (var categoryId in SelectedCategoryIds)
+                    {
+                        _categoryProductService.AddCategoryToProduct(categoryId, product.ID);
+                    }
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
-            var categoryNames = _productService.GetCategoryNames(); // Adjust the method as per your implementation
-            ViewBag.CategoryNames = categoryNames;
+            //iff the model state is not valid, retrieve the categories again and pass them to the view
+            var categories = _categoryService.GetAllCategories();
+            ViewBag.Categories = categories;
+
             return View(productModel);
         }
+
 
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
@@ -79,6 +108,16 @@ namespace MvcArcheryWebshop.Controllers
             }
 
             var productModel = new ProductModel(product);
+
+            //retrieve all categories
+            var allCategories = _categoryService.GetAllCategories();
+            ViewBag.AllCategories = allCategories;
+
+            //retrieve the category id for the product
+            var categoryIds = _categoryProductService.GetCategoryIdsForProduct(id);
+
+            //assign the selected category id to the model
+            productModel.SelectedCategoryIds = categoryIds;
 
             return View(productModel);
         }
@@ -102,7 +141,6 @@ namespace MvcArcheryWebshop.Controllers
                     return NotFound();
                 }
 
-                product.ID = productModel.ID;
                 product.Name = productModel.Name;
                 product.ImageUrl = productModel.ImageUrl;
                 product.Price = productModel.Price;
@@ -110,11 +148,27 @@ namespace MvcArcheryWebshop.Controllers
 
                 _productService.EditProduct(product);
 
+                //update the categories of the product
+                _categoryProductService.RemoveCategoriesFromProduct(id);
+
+                if (productModel.SelectedCategoryIds != null)
+                {
+                    foreach (var categoryId in productModel.SelectedCategoryIds)
+                    {
+                        _categoryProductService.AddCategoryToProduct(categoryId, product.ID);
+                    }
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
+            //if the model state is not valid, retrieve the categories again and pass them to the view
+            var allCategories = _categoryService.GetAllCategories();
+            ViewBag.AllCategories = allCategories;
+
             return View(productModel);
         }
+
 
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
@@ -136,15 +190,9 @@ namespace MvcArcheryWebshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductModel productModel)
         {
-            var product = _productService.GetProductByID(productModel.ID);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-
+            _categoryProductService.RemoveCategoriesFromProduct(productModel.ID);
             _productService.DeleteProduct(productModel.ID);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
     }
 }

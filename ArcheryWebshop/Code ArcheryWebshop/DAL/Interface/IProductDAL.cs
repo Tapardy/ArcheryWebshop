@@ -1,17 +1,12 @@
 using DAL.DTO;
 
-namespace DAL.Interface
+namespace DAL.Interface;
+
+public interface IProductDAL
 {
-    public interface IProductDAL
-    {
-        List<ProductDTO> GetProducts();
-
-        ProductDTO GetProductByID(int id);
-
-        // Other methods required by the Logic layer go here
-        void AddProduct(ProductDTO dto);
-        void EditProduct(ProductDTO dto);
-        void DeleteProduct(int id);
-        List<CategoryDTO> GetCategories();
-    }
+    ProductDTO GetProductByID(int id);
+    List<ProductDTO> GetAllProducts();
+    void AddProduct(ProductDTO product);
+    void EditProduct(ProductDTO dto);
+    void DeleteProduct(int id);
 }

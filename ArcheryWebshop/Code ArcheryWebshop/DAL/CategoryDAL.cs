@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using DAL.DTO;
-using System.Data.SqlClient;
 using DAL.Interface;
 using Microsoft.Data.SqlClient;
 
@@ -8,104 +6,60 @@ namespace DAL
 {
     public class CategoryDAL : ICategoryDAL
     {
-        private ICategoryDAL _categoryDalImplementation;
-
-        public List<CategoryDTO> GetCategories()
+        public List<CategoryDTO> GetAllCategories()
         {
             List<CategoryDTO> categories = new List<CategoryDTO>();
-
             using (SqlConnection connection = new SqlConnection(Secrets.ConnectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Categories", connection);
+                SqlCommand command = new SqlCommand(
+                    "SELECT * FROM dbi507362.ArcheryWebshop.Category",
+                    connection);
                 SqlDataReader reader = command.ExecuteReader();
-
                 while (reader.Read())
                 {
-                    CategoryDTO category = new CategoryDTO
-                    {
-                        ID = (int)reader["ID"],
-                        Name = (string)reader["Name"],
-                        ImageUrl = (string)reader["Image"]
-                        // Map other category properties
-                    };
-
+                    CategoryDTO category = new CategoryDTO(
+                        (int)reader["ID"],
+                        reader["Name"].ToString()
+                    );
                     categories.Add(category);
                 }
 
-                reader.Close();
                 connection.Close();
             }
 
             return categories;
         }
 
-        public CategoryDTO GetCategoryById(int categoryId)
+        public List<CategoryDTO> GetCategoriesByIds(List<int> categoryIds)
         {
-            CategoryDTO category = null;
-
+            List<CategoryDTO> categories = new List<CategoryDTO>();
             using (SqlConnection connection = new SqlConnection(Secrets.ConnectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Categories WHERE ID = @CategoryId", connection);
-                command.Parameters.AddWithValue("@CategoryId", categoryId);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
+                string query = "SELECT * FROM dbi507362.ArcheryWebshop.Category WHERE ID IN ({0})";
+                string parameterNames = string.Join(",", categoryIds.Select((id, index) => $"@ID{index}"));
+                string commandText = string.Format(query, parameterNames);
+                SqlCommand command = new SqlCommand(commandText, connection);
+                for (int i = 0; i < categoryIds.Count; i++)
                 {
-                    category = new CategoryDTO
-                    {
-                        ID = (int)reader["ID"],
-                        Name = (string)reader["Name"],
-                        // Map other category properties
-                    };
+                    command.Parameters.AddWithValue($"@ID{i}", categoryIds[i]);
                 }
 
-                reader.Close();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    CategoryDTO category = new CategoryDTO(
+                        (int)reader["ID"],
+                        reader["Name"].ToString()
+                    );
+                    categories.Add(category);
+                }
+
                 connection.Close();
             }
 
-            return category;
-        }
-
-        public void AddCategory(CategoryDTO category)
-        {
-            using (SqlConnection connection = new SqlConnection(Secrets.ConnectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("INSERT INTO Categories (Name) VALUES (@Name)", connection);
-                command.Parameters.AddWithValue("@Name", category.Name);
-                // Set other category properties as parameters if needed
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-
-        public void EditCategory(CategoryDTO category)
-        {
-            using (SqlConnection connection = new SqlConnection(Secrets.ConnectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("UPDATE Categories SET Name = @Name WHERE ID = @CategoryId",
-                    connection);
-                command.Parameters.AddWithValue("@Name", category.Name);
-                command.Parameters.AddWithValue("@CategoryId", category.ID);
-                // Set other category properties as parameters if needed
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-
-        public void DeleteCategory(int categoryId)
-        {
-            using (SqlConnection connection = new SqlConnection(Secrets.ConnectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Categories WHERE ID = @CategoryId", connection);
-                command.Parameters.AddWithValue("@CategoryId", categoryId);
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
+            return categories;
         }
     }
 }

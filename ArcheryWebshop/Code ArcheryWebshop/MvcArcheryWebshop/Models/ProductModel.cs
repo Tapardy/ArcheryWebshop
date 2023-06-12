@@ -5,12 +5,13 @@ namespace MvcArcheryWebshop.Models
     public class ProductModel
     {
         public int ID { get; set; }
-        public int CategoryID { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public string CategoryName { get; set; }
+        public List<string> Categories { get; set; }
+        public List<int> SelectedCategoryIds { get; set; }
+
 
         public ProductModel(Product product)
         {
@@ -23,6 +24,9 @@ namespace MvcArcheryWebshop.Models
 
         public ProductModel()
         {
+            //initialize the lists to make the model state valid. if not initiated, the model state is invalid
+            Categories = new List<string>();
+            SelectedCategoryIds = new List<int>();
         }
     }
 }

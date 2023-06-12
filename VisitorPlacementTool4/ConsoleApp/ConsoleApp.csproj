@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\VisitorPlacementToolCallForHelp\VisitorPlacementToolCallForHelp.csproj" />
+      <ProjectReference Include="..\VisitorPlacementTool4\VisitorPlacementTool4.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,24 +1,10 @@
-using DAL.DTO;
-using WebshopClassLibrary;
+using System.ComponentModel.DataAnnotations;
 
-namespace MvcArcheryWebshop.Models;
-
-public class CategoryModel
+namespace MvcArcheryWebshop.Models
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public string imageUrl { get; set; }
-
-    public CategoryModel(Category category)
+    public class CategoryModel
     {
-        ID = category.ID;
-        Name = category.Name;
-        imageUrl = category.ImageUrl;
+        public int ID { get; set; } 
+        public string Name { get; set; }
     }
-
-    public CategoryModel()
-    {
-    }
-
-    //TODO: More research on how to use the models, currently know it is for detailed info
 }

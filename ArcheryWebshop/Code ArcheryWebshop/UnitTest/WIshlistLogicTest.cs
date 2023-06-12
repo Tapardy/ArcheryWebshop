@@ -1,5 +1,6 @@
 using DAL.DTO;
 using DAL.Mock;
+using LogicLayer;
 using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
 

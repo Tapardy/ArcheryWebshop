@@ -1,5 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=71238a41_002D4a4d_002D41a5_002D9e06_002Da06482e9ef8e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetProductByID_NonExistingID_ReturnsNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=71238a41_002D4a4d_002D41a5_002D9e06_002Da06482e9ef8e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetProductByID_NonExistingID_ReturnsNull" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=97bee6e4_002D7edc_002D425b_002D9a2d_002Dd254d190bde2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetProducts_ReturnsListOfProducts" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -7,6 +7,6 @@
     &lt;TestId&gt;NUnit3x::AC715A4B-F34F-4F4A-8C24-9ADC650E77E9::net6.0::UnitTests.ProductServiceTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bda478ec_002D391f_002D486d_002D8c76_002D07f4c9beea16/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetProductByID_NonExistingID_ReturnsNull #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bda478ec_002D391f_002D486d_002D8c76_002D07f4c9beea16/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetProductByID_NonExistingID_ReturnsNull #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

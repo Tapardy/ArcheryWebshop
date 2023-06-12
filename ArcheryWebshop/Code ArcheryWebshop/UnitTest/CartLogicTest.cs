@@ -1,5 +1,6 @@
 using DAL.DTO;
 using DAL.Mock;
+using LogicLayer;
 using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
 
@@ -63,7 +64,7 @@ namespace UnitTest
             var mockProduct2 = new ProductDTO { ID = 2, Name = "Product 2", Price = 30.99m };
             _mockProductDAL.AddProduct(mockProduct1);
             _mockProductDAL.AddProduct(mockProduct2);
-            
+
             // Act
             var cartItemsWithDetails = _cartLogic.GetCartItemsWithProductDetails(cartItems);
 

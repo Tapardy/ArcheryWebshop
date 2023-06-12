@@ -1,4 +1,5 @@
 using DAL;
+using LogicLayer;
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
 using WebshopClassLibrary.Mappers;
@@ -16,7 +17,7 @@ namespace MvcArcheryWebshop.Controllers
 
         public IActionResult Index()
         {
-            var products = _productService.GetProducts();
+            var products = _productService.GetAllProducts();
             var productModels = products.Select(product => new ProductModel(product)).ToList();
             return View(productModels);
         }

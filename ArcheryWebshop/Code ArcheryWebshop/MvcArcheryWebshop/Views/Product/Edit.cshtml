@@ -34,9 +34,29 @@
             @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
+        <!-- Category selection form -->
+        <form asp-controller="Product" asp-action="Edit" method="post">
+            <input type="hidden" name="id" value="@Model.ID"/>
+            <div class="form-group">
+                <label for="category">Categories:</label>
+                <div>
+                    @foreach (var category in ViewBag.AllCategories)
+                    {
+                        var isChecked = Model.SelectedCategoryIds.Contains(category.ID) ? "checked" : "";
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="category_@category.ID" name="SelectedCategoryIds" value="@category.ID" @isChecked>
+                            <label class="form-check-label" for="category_@category.ID">
+                                @category.Name
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update product</button>
+        </form>
+
 
         <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary"/>
             <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
         </div>
     }
