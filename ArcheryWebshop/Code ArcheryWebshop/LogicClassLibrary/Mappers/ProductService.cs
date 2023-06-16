@@ -1,10 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using DAL.DTO;
 using DAL.Interface;
-using WebshopClassLibrary;
 
-namespace LogicLayer
+namespace WebshopClassLibrary.Mappers
 {
     public class ProductService
     {
@@ -38,7 +35,7 @@ namespace LogicLayer
         {
             ProductDTO productDto = MapToProductDto(product);
             _productDal.AddProduct(
-                productDto); // Update the AddProduct method in the DAL to return the generated product ID
+                productDto); //update the AddProduct method in the DAL to return the generated product ID
         }
 
         public void EditProduct(Product product)

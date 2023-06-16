@@ -1,5 +1,4 @@
 using DAL.DTO;
-using DAL.Interface;
 
 namespace WebshopClassLibrary.Mappers;
 

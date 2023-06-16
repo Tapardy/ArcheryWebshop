@@ -1,10 +1,8 @@
 using DAL;
-using LogicLayer;
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
 using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
-using WebshopClassLibrary.Mappers.LogicLayer;
 
 namespace MvcArcheryWebshop.Controllers
 {
@@ -52,6 +50,7 @@ namespace MvcArcheryWebshop.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult Create()
         {
             var categories = _categoryService.GetAllCategories();
@@ -98,6 +97,7 @@ namespace MvcArcheryWebshop.Controllers
 
 
         // GET: Product/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var product = _productService.GetProductByID(id);

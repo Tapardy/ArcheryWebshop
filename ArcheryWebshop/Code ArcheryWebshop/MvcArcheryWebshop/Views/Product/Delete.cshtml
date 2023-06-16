@@ -1,4 +1,16 @@
 @model ProductModel
+
+@{
+    var userRole = Context.Request.Cookies["UserRoleCookie"];
+    var isAuthenticated = !string.IsNullOrEmpty(Context.Request.Cookies["UserNameCookie"]);
+    var isAdmin = (isAuthenticated && userRole == "Admin");
+    
+    if(!isAdmin)
+    {
+        Context.Response.Redirect("/Home/Index");
+    }
+}
+
 @{
     ViewData["Title"] = "Product";
 }

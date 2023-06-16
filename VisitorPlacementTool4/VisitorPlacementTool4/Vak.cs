@@ -71,7 +71,6 @@ public class Vak
         }
     }
 
-
     public bool IsVakVol()
     {
         return _rijen.All(rij => rij.IsRijVol());

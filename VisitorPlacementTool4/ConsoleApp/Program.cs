@@ -26,11 +26,11 @@ namespace ConsoleApp
                         if (stoel.IsBezet())
                         {
                             Bezoeker bezoeker = stoel.GetBezoeker();
-                            Console.WriteLine($"    Stoel {stoel.StoelId}: Bezoeker GroepId={bezoeker.GroepId}, Leeftijd={bezoeker.Leeftijd}");
+                            Console.WriteLine($"Stoel {stoel.StoelId}: Bezoeker GroepId={bezoeker.GroepId}, Leeftijd={bezoeker.Leeftijd}");
                         }
                         else
                         {
-                            Console.WriteLine($"    Stoel {stoel.StoelId}: Unassigned");
+                            Console.WriteLine($"Stoel {stoel.StoelId}: Unassigned");
                         }
                     }
                 }

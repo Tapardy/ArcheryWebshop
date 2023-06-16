@@ -1,6 +1,17 @@
 @model ProductModel
 
 @{
+    var userRole = Context.Request.Cookies["UserRoleCookie"];
+    var isAuthenticated = !string.IsNullOrEmpty(Context.Request.Cookies["UserNameCookie"]);
+    var isAdmin = (isAuthenticated && userRole == "Admin");
+    
+    if(!isAdmin)
+    {
+        Context.Response.Redirect("/Home/Index");
+    }
+}
+
+@{
     ViewData["Title"] = "Product";
 }
 
@@ -54,8 +65,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Update product</button>
         </form>
-
-
         <div class="form-group">
             <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
         </div>

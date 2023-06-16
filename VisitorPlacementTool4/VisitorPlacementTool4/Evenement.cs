@@ -33,7 +33,7 @@ public class Evenement
     {
         for (int i = 0; i < numGroepen; i++)
         {
-            int groepId = _groepen.Count + 1; // Generate groepId based on the current count of groepen
+            int groepId = _groepen.Count + 1; //generate groepId based on the current count of groepen
 
             Groep groep = new Groep(groepId);
 

@@ -88,8 +88,8 @@ namespace UnitTest
             TimeSpan timeSinceAanmelding = DateTime.Now - aanmeldingsDatum;
 
             // Assert
-            Assert.GreaterOrEqual(timeSinceAanmelding.Days, 0); // Make sure the timeSinceAanmelding is non-negative
-            Assert.Less(timeSinceAanmelding.Days, 30); // Check if the timeSinceAanmelding is less than 30 days
+            Assert.GreaterOrEqual(timeSinceAanmelding.Days, 0); //make sure the timeSinceAanmelding is non-negative
+            Assert.Less(timeSinceAanmelding.Days, 30); //check if the timeSinceAanmelding is less than 30 days
         }
     }
 }

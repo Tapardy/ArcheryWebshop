@@ -1,5 +1,3 @@
-
-using LogicLayer;
 using WebshopClassLibrary.Mappers;
 
 namespace WebshopClassLibrary

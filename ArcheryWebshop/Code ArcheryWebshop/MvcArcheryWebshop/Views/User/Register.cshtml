@@ -1,0 +1,45 @@
+@model UserModel
+@{
+    ViewData["Title"] = "Register";
+}
+<main>
+    <h2>Register</h2>
+
+    @using (Html.BeginForm("Register", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="form-group">
+            <label for="roles">Roles:</label>
+            <br />
+            @foreach (var role in ViewBag.Roles)
+            {
+                <label>
+                    @Html.CheckBox("SelectedRoles", false, new { value = role.ID })
+                    @role.Name
+                </label>
+                <br />
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+        <a href="@Url.Action("Login", "User")" class="btn btn-primary">Back to login</a> // redirect user to the login page
+    }
+
+    @if (ViewData.ModelState.ContainsKey("") && ViewData.ModelState[""].Errors.Any())
+    {
+        <div class="alert alert-danger">@ViewData.ModelState[""].Errors.FirstOrDefault()?.ErrorMessage</div>
+    }
+</main>

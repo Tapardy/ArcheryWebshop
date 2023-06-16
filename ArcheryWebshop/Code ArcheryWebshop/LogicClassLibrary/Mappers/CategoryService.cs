@@ -25,7 +25,7 @@ namespace WebshopClassLibrary.Mappers
             List<string> categories = categoryDtos.Select(c => c.Name).ToList();
             return categories;
         }
-        
+
         private Category MapToCategory(CategoryDTO categoryDto)
         {
             return new Category

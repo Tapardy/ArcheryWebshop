@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using LogicLayer;
 using WebshopClassLibrary.Mappers;
 
 namespace WebshopClassLibrary
@@ -35,7 +34,7 @@ namespace WebshopClassLibrary
 
             foreach (var cartItem in cartItems)
             {
-                // Get the product details for each cart item and create a new cart item with details
+                //get the product details for each cart item and create a new cart item with details
                 var product = _productService.GetProductByID(cartItem.ProductID);
                 if (product != null)
                 {
@@ -45,7 +44,7 @@ namespace WebshopClassLibrary
                         ProductID = product.ID,
                         ProductName = product.Name,
                         Price = product.Price,
-                        // Set other product details as needed
+                        //set other product details as needed
                     };
 
                     cartItemsWithDetails.Add(cartItemWithDetails);

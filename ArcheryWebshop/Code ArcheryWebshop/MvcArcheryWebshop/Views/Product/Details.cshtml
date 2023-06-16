@@ -12,13 +12,13 @@
     <p>@Model.Description</p>
 
     <p>Price: €@Model.Price</p>
-     <p>Categories:</p>
-            <ul>
-                @foreach (var category in Model.Categories)
-                {
-                    <li>@category</li>
-                }
-            </ul>
+    <p>Categories:</p>
+    <ul>
+        @foreach (var category in Model.Categories)
+        {
+            <li>@category</li>
+        }
+    </ul>
     <form method="post" action="/Wishlist/AddToWishlist">
         <input type="hidden" name="productId" value="@Model.ID"/>
         <div class="product-info">

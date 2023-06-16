@@ -1,5 +1,4 @@
 using DAL;
-using LogicLayer;
 using Microsoft.AspNetCore.Mvc;
 using MvcArcheryWebshop.Models;
 using WebshopClassLibrary.Mappers;

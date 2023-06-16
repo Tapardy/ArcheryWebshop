@@ -1,11 +1,23 @@
+@model IEnumerable<ProductModel>
+
+@{
+    var userRole = Context.Request.Cookies["UserRoleCookie"];
+    var isAuthenticated = !string.IsNullOrEmpty(Context.Request.Cookies["UserNameCookie"]);
+    var isAdmin = (isAuthenticated && userRole == "Admin");
+}
+
 @{
     ViewData["Title"] = "Product";
 }
 
 <main>
-    <div class="edit-product">
-        <a href="@Url.Action("Create", "Product")" class="btn btn-primary">Add new product</a>
-    </div>
+    @if (isAdmin)
+    {
+        <div class="edit-product">
+            <a href="@Url.Action("Create", "Product")" class="btn btn-primary">Add new product</a>
+        </div>
+    }
+    
     <section class="featured-products">
         @foreach (var product in Model)
         {
@@ -16,23 +28,24 @@
                 </a>
                 <div class="product-info">
                     <p>Price: €@product.Price.ToString("0.00")</p>
-                    <a href="@Url.Action("Edit", "Product", new { id = product.ID })" class="btn btn-primary">Edit</a>
-                    <a href="@Url.Action("Delete", "Product", new { id = product.ID })" class="btn btn-yori">Delete</a>
+                    @if (isAdmin)
+                    {
+                        <a href="@Url.Action("Edit", "Product", new { id = product.ID })" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("Delete", "Product", new { id = product.ID })" class="btn btn-yori">Delete</a>
+                    }
                     <form method="post" action="/Wishlist/AddToWishlist">
-                        <input type="hidden" name="productId" value="@product.ID"/>
+                        <input type="hidden" name="productId" value="@product.ID" />
                         <div class="product-info">
                             <button class="btn btn-primary">Add to Wishlist</button>
                         </div>
                     </form>
                     <form method="post" action="/Cart/AddToCart">
-                        <input type="hidden" name="productId" value="@product.ID"/>
+                        <input type="hidden" name="productId" value="@product.ID" />
                         <div class="product-info">
                             <button class="btn btn-primary">Add to Cart</button>
                         </div>
                     </form>
-
                 </div>
-
             </div>
         }
     </section>

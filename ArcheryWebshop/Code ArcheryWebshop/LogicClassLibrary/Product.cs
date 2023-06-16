@@ -1,8 +1,4 @@
-﻿using DAL.DTO;
-using DAL.Interface;
-using LogicLayer;
-
-namespace WebshopClassLibrary
+﻿namespace WebshopClassLibrary
 {
     public class Product
     {

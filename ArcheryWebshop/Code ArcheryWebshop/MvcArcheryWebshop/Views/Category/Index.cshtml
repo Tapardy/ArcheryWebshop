@@ -4,11 +4,11 @@
 <main>
     <h1>Bow Types</h1>
     @foreach (var category in Model)
-            {
-                <div class="product">
-                    <h4>@category.Name</h4>
-                    <a href="@Url.Action("Index", "Category", new { id = category.ID })">
-                    </a>
-                </div>
-            }
+    {
+        <div class="product">
+            <h4>@category.Name</h4>
+            <a href="@Url.Action("Index", "Category", new { id = category.ID })">
+            </a>
+        </div>
+    }
 </main>

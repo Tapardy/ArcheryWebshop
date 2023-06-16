@@ -1,6 +1,5 @@
 using DAL.DTO;
 using DAL.Mock;
-using LogicLayer;
 using WebshopClassLibrary;
 using WebshopClassLibrary.Mappers;
 
@@ -69,7 +68,7 @@ namespace UnitTest
             // Assert
             Assert.IsNull(result);
         }
-        
+
         [Test]
         public void AddProduct_ValidProduct_CreatesProduct()
         {
@@ -126,7 +125,7 @@ namespace UnitTest
             Assert.AreEqual(updatedProduct.Price, editedProduct.Price);
             Assert.AreEqual(updatedProduct.Description, editedProduct.Description);
         }
-        
+
         [Test]
         public void DeleteProduct_ValidProduct_DeletesProduct()
         {
@@ -139,7 +138,7 @@ namespace UnitTest
                 Price = 9.99m,
                 Description = "To be deleted"
             };
-            
+
             _mockProductDAL.AddProduct(productToDelete);
 
             // Act
@@ -149,6 +148,5 @@ namespace UnitTest
             var deletedProduct = _mockProductDAL.GetProductByID(productId);
             Assert.IsNull(deletedProduct);
         }
-
     }
 }

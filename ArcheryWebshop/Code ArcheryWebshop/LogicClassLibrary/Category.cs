@@ -1,5 +1,5 @@
 namespace WebshopClassLibrary
-{    
+{
     public class Category
     {
         public int ID { get; set; }

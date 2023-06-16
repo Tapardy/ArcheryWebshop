@@ -54,7 +54,7 @@ namespace UnitTest
                 {
                     if (stoel.IsBezet())
                     {
-                        Assert.Pass(); // At least one stoel is occupied by a bezoeker
+                        Assert.Pass(); //at least one stoel is occupied by a bezoeker
                         return;
                     }
                 }
@@ -87,7 +87,7 @@ namespace UnitTest
             {
                 foreach (var stoel in rij.GetStoelen())
                 {
-                    Assert.IsFalse(stoel.IsBezet()); // Checks if no stoelen are occupied when no bezoekers are provided
+                    Assert.IsFalse(stoel.IsBezet()); //checks if no stoelen are occupied when no bezoekers are provided
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace UnitTest
         }
 
         [Test]
-        public void IsVakVol_ShouldReturnFalse_NegativeTest() // Checks if the vak is not full when no stoelen are assigned
+        public void IsVakVol_ShouldReturnFalse_NegativeTest() //checks if the vak is not full when no stoelen are assigned
         {
             // Arrange
             Vak vak = new Vak(1);

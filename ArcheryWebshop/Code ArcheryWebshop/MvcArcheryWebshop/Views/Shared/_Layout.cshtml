@@ -1,3 +1,7 @@
+@{
+    var userName = Context.Request.Cookies["UserNameCookie"];
+    var isAuthenticated = !string.IsNullOrEmpty(userName);
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +21,32 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <ul class="navbar-nav ml-auto">
+                @if (isAuthenticated)
+                {
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, @userName</span>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" action="/User/Logout">
+                            <button type="submit" class="nav-link btn btn-link">Logout</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/User/Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/User/Register">Register</a>
+                    </li>
+                }
+            </ul>
+
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
+
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
@@ -42,7 +70,6 @@
         @RenderBody()
     </main>
 </div>
-
 <footer class="border-top footer text-muted">
     <div class="container">
         &copy; 2023 ArcheryWebshop. All rights reserved - <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>

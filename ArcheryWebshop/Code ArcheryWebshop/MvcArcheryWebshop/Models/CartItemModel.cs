@@ -19,7 +19,7 @@ namespace MvcArcheryWebshop.Models
                 ProductName = cartItem.Name;
             }
         }
-        
+
         public CartItemModel(CartItem cartItem)
         {
             Quantity = cartItem.Quantity;
@@ -27,7 +27,7 @@ namespace MvcArcheryWebshop.Models
             ProductName = cartItem.ProductName;
             Price = cartItem.Price;
         }
-        
+
         public CartItemModel()
         {
         }
